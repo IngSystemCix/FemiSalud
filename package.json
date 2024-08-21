@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.10"
+  },
+    "scripts": {
+        "build": "npx tailwindcss -i src/main/webapp/resources/css/main.css -o ./src/main/webapp/css/tailwind.css --watch",
+        "production": "NODE_ENV=production postcss src/main/webapp/resources/css/main.css -o ./src/main/webapp/css/tailwind.css"
+    }
+}
