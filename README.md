@@ -10,6 +10,23 @@ Femisalud es una innovadora aplicación web diseñada específicamente para muje
 - [Ramos Marrufo, Daniel David](https://github.com/daramoss03)
 - [Fupuy Chanamé, Jorge Hugo](https://github.com/hchin11)
 
+## Instalación
+
+1. Clonar el repositorio
+```bash
+git clone https://github.com/IngSystemCix/FemiSalud.git
+```
+2. Importar el proyecto en IntelliJ IDEA
+3. Configurar el servidor de aplicaciones Wildfly
+4. Crear la base de datos en MariaDB
+```sql
+CREATE DATABASE femisalud;
+```
+5. Ingresar a la carpeta `src/main/webapp` y ejecutar el comando
+```bash
+npm install
+```
+
 ## Construido con 🛠
 
 - Frontend: Tailwind CSS, JavaScript
