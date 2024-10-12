@@ -13,16 +13,24 @@ module.exports = {
         femisalud: {
           100: '#f0f8fb',
           300: '#cee8f9',
+          400: '#91BEE1',
           600: '#006eb6',
           900: '#11568f'
+        },
+        lavender: {
+          400: '#d9c4e1'
         }
       },
       backgroundColor: {
         femisalud: {
           100: '#f0f8fb',
           300: '#cee8f9',
+          400: '#91BEE1',
           600: '#006eb6',
           900: '#11568f'
+        },
+        lavender: {
+          400: '#d9c4e1'
         }
       },
     },

@@ -6,6 +6,7 @@
   <title>FemiSalud</title>
 </head>
 <body>
-  <h1>HOLI SOI DANIEL</h1>
+  <jsp:include page="fragment/sidebar.jsp"/>
+  <script src="${pageContext.request.contextPath}/assets/js/sidebar.js"></script>
 </body>
 </html>
