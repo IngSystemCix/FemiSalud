@@ -1,14 +1,14 @@
 # Femisalud
 ## Descripción
 
-Femisalud es una aplicación web que permite a las mujeres embarazadas llevar un control de su embarazo, además de brindarles información relevante sobre el mismo. La aplicación cuenta con un calendario de citas, un control de peso, un control de medicamentos y un control de síntomas. Además, la aplicación cuenta con un chatbot que responde a las preguntas más frecuentes de las mujeres embarazadas.
+Femisalud es una innovadora aplicación web diseñada específicamente para mujeres embarazadas, que les permite llevar un control integral de su embarazo. Esta plataforma ofrece una variedad de funcionalidades para facilitar el seguimiento de la salud y el bienestar de las futuras mamás, así como para proporcionar información relevante y apoyo durante este importante período.
 
 ## Desarrolladores
 
-- [Romero Collazos, Juan Bladimir]()
+- [Romero Collazos, Juan Bladimir](https://github.com/IngSystemCix)
 - [Martinez Vidaurre, Briggitte del Milagro]()
-- [Ramos Marrufo, Daniel David]()
-- [Fupuy Chanamé, Jorge Hugo]()
+- [Ramos Marrufo, Daniel David](https://github.com/daramoss03)
+- [Fupuy Chanamé, Jorge Hugo](https://github.com/hchin11)
 
 ## Construido con 🛠
 
@@ -28,7 +28,7 @@ Femisalud es una aplicación web que permite a las mujeres embarazadas llevar un
 
 ## Licencia
 
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.md) para más detalles.
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE) para más detalles.
 
 > [!WARNING]
 > Este proyecto es un prototipo y no debe ser utilizado en un entorno de producción.
