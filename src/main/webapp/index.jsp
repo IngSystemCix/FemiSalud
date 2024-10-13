@@ -6,7 +6,6 @@
   <title>FemiSalud</title>
 </head>
 <body>
-  <jsp:include page="fragment/sidebar.jsp"/>
-  <script src="${pageContext.request.contextPath}/assets/js/sidebar.js"></script>
+  <jsp:include page="home.jsp"/>
 </body>
 </html>

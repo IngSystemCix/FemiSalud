@@ -87,3 +87,4 @@
         <span class="text-center label_buttom hidden text-white font-bold">Cerrar Sesión</span>
     </button>
 </nav>
+
