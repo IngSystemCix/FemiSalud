@@ -6,6 +6,6 @@
   <title>FemiSalud</title>
 </head>
 <body>
-  <jsp:include page="home.jsp"/>
+  <jsp:include page="editPerfil.jsp"/>
 </body>
 </html>

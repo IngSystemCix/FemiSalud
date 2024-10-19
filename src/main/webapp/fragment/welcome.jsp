@@ -6,11 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="bg-gradient-to-r from-purple-500 to-purple-300 rounded-lg shadow-lg p-3 flex max-w-4xl">
+<div class="bg-gradient-to-r from-purple-200 to-purple-50 rounded-lg shadow-lg p-3 flex max-w-4xl">
     <!-- Texto del cuadro -->
     <div class="flex-1">
-        <h2 class="text-2xl font-bold text-white mb-2">Bienvenida a FemiSalud</h2>
-        <p class="text-white">
+        <h2 class="text-2xl font-bold text-femisalud-900 mb-2">Bienvenida a FemiSalud</h2>
+        <p class="text-black">
             Querida futura mamá Briggitte,<br>
             Sabemos que estás viviendo uno de los momentos más emocionantes y transformadores de tu vida.
             En FemiSalud, queremos acompañarte en cada paso de este hermoso viaje.

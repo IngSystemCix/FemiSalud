@@ -18,7 +18,7 @@
   </div>
 
   <!-- Dots for slide indication (below the images) -->
-  <div class="flex justify-center mt-2">
+  <div id="slider-dots" class="flex justify-center mt-2">
     <button class="w-3 h-3 rounded-full bg-gray-400 focus:outline-none mx-1" onclick="goToSlide(0)"></button>
     <button class="w-3 h-3 rounded-full bg-gray-400 focus:outline-none mx-1" onclick="goToSlide(1)"></button>
     <button class="w-3 h-3 rounded-full bg-gray-400 focus:outline-none mx-1" onclick="goToSlide(2)"></button>
