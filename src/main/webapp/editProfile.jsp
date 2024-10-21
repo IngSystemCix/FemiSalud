@@ -14,14 +14,14 @@
 </head>
 <body class="flex w-full h-screen">
 <!-- Ajusta el contenedor principal para que sidebar y main se distribuyan correctamente -->
-<div class="flex w-full h-full">
+<div class="flex w-full h-full bg-femisalud-300">
     <!-- Sidebar con ancho fijo -->
     <div class=" h-full w-64">
         <jsp:include page="fragment/sidebar.jsp"/>
     </div>
 
     <!-- Contenedor principal ajustado para ocupar el resto del espacio disponible -->
-    <main class="bg-gray-100 h-full w-full flex justify-center items-center h-screen ">
+    <main class="bg-white h-full w-full flex justify-center items-center h-screen ">
         <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-lg">
 
             <!-- Título de la sección -->
