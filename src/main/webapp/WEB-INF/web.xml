@@ -6,6 +6,36 @@
 
   <display-name>femisalud</display-name>
 
+  <servlet>
+    <servlet-name>RoutesPages</servlet-name>
+    <servlet-class>pe.edu.utp.femisalud.controller.RoutesPages</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>RoutesPages</servlet-name>
+    <url-pattern>/home</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>RoutesPages</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>RoutesPages</servlet-name>
+    <url-pattern>/profile</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>RoutesPages</servlet-name>
+    <url-pattern>/ambassador</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>RoutesPages</servlet-name>
+    <url-pattern>/message</url-pattern>
+  </servlet-mapping>
+
   <error-page>
     <error-code>403</error-code>
     <location>/error/403.jsp</location>

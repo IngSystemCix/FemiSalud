@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<nav class="h-[calc(100vh-2rem)] absolute left-4 top-4 bg-femisalud-900 rounded-full p-6 flex flex-col justify-start  gap-6" id="navbar">
+<nav class="h-[calc(100vh-2rem)] fixed left-4 top-4 bg-femisalud-900 rounded-full p-6 flex flex-col justify-start  gap-6" id="navbar">
     <img class="cursor-pointer w-12 h-12" id="logo" src="${pageContext.request.contextPath}/assets/img/F_logo.png" alt="Logo">
     <ul class="h-full flex flex-col gap-3">
         <li class="flex justify-start items-center gap-3">

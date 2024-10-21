@@ -6,18 +6,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="relative bg-white rounded-lg shadow-lg p-6 max-w-sm">
-    <!-- Fondo SVG -->
-    <div class="absolute inset-0 flex items-center justify-center rounded-lg">
-        <img src="${pageContext.request.contextPath}/assets/img/vector_file.svg" alt="Fondo de carpeta" class="w-full h-full object-cover" />
-    </div>
-    <!-- Contenido -->
-    <div class="relative z-10 flex flex-col">
-        <h2 class="text-lg text-right font-semibold text-gray-800 mb-2">Publicación reciente</h2>
-        <img src="${pageContext.request.contextPath}/assets/img/miniature_ultrasound.png" alt="Miniatura de publicación" class="object-cover rounded mb-2 items-start">
-        <div class="flex flex-col items-start w-full">
-            <p class="font-bold text-gray-900">POST 1</p>
-            <p class="text-gray-600">22/09/2024 12:12</p>
+<div class="w-full">
+    <h2 class="font-bold mb-6">Publicaciones recientes</h2>
+    <div class="w-full grid grid-cols-2 sm:grid-cols-1 gap-y-6">
+        <div class="relative">
+            <div class="absolute -top-2 left-0 h-6 w-24 bg-femisalud-300 rounded-t-md"></div>
+            <div class="w-96 h-56 bg-femisalud-300 rounded-md shadow-md"></div>
+            <img src="${pageContext.request.contextPath}/assets/img/miniature_ultrasound.png" alt="ecografía" class="absolute bottom-20 left-4 w-[22rem] h-32 rounded-lg">
+            <div class="absolute bottom-4 left-4">
+                <p class="font-bold text-femisalud-600">Post 1</p>
+                <p class="text-sm">22/09/2024 12:12</p>
+            </div>
         </div>
     </div>
 </div>
