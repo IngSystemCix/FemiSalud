@@ -12,7 +12,6 @@
   <jsp:include page="fragment/head.jsp"/>
   <title>FemiSalud</title>
 </head>
-<<<<<<< HEAD
 <body class="flex justify-center items-center w-full h-screen bg-femisalud-300">
   <form action="" method="post" class="w-full h-full flex flex-col justify-center items-start p-6 gap-6">
     <div class="w-full text-center">
@@ -67,9 +66,5 @@
     </div>
   </div>
   <script src="${pageContext.request.contextPath}/assets/js/formLogin.js"></script>
-=======
-<body>
-  <jsp:include page="revelationSex.jsp"/>
->>>>>>> 47b32ea1d064a27a259510ea1af6c0239703e9f9
 </body>
 </html>
