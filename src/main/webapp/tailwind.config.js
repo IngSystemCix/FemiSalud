@@ -33,10 +33,20 @@ module.exports = {
           400: '#d9c4e1'
         }
       },
+      keyframes: {
+        'confetti-fall': {
+          '0%': { transform: 'translateY(-100vh)' },
+          '100%': { transform: 'translateY(100vh)' },
+        },
+      },
+      animation: {
+        'confetti-fall': 'confetti-fall linear infinite',
+      },
     },
   },
   plugins: [
     require('flowbite/plugin')
   ],
+
 }
 

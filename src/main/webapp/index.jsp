@@ -6,6 +6,6 @@
   <title>FemiSalud</title>
 </head>
 <body>
-  <jsp:include page="baby.jsp"/>
+  <jsp:include page="revelationSex.jsp"/>
 </body>
 </html>
