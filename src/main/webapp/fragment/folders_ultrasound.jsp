@@ -6,65 +6,83 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="bg-gray-100 flex justify-center items-center min-h-screen">
-    <div class="flex items-center flex flex-col gap-8 h-[600px] overflow-y-scroll">
+<div class="bg-gray-100 flex justify-center items-center w-96 h-full">
+    <div class="flex flex-col gap-8 w-full h-full max-h-screen overflow-y-auto p-3">
         <h2 class="font-bold">FOLDERS</h2>
-        <div class="relative w-[300px] h-[250px]">
-            <!-- Fondo de la carpeta -->
-            <img src="${pageContext.request.contextPath}/assets/img/vector_file.svg" alt="Fondo de carpeta" class="w-full h-full object-cover" />
-            <!-- Miniatura de ecografía -->
-            <div class="absolute top-[20%] left-[10%] w-[80%] h-[55%] rounded-lg overflow-hidden">
-                <img src="${pageContext.request.contextPath}/assets/img/femisalud_logo.webp" alt="Miniatura de publicación" class="">
+        <div class="w-full h-44 relative">
+            <div class="absolute -top-2 left-0 h-6 w-24 bg-femisalud-300 rounded-t-md"></div>
+            <div class="w-full h-44 bg-femisalud-300 rounded-md shadow-md"></div>
+            <div class="absolute top-1 left-[10%] w-[80%] h-[55%] rounded-lg">
+                <img src="${pageContext.request.contextPath}/assets/img/femisalud_logo.webp" alt="Miniatura de publicación">
             </div>
-
-            <!-- Texto alineado a la izquierda con margen -->
             <div class="absolute bottom-[10%] left-[10%] text-white">
                 <p class="text-sm font-bold text-femisalud-900">POST 1</p>
                 <p class="text-xs text-femisalud-900">22/09/2024 12:12</p>
             </div>
         </div>
-
-        <div class="relative w-[300px] h-[250px]">
-            <!-- Fondo de la carpeta -->
-            <img src="${pageContext.request.contextPath}/assets/img/vector_file.svg" alt="Fondo de carpeta" class="w-full h-full object-cover" />
-            <!-- Miniatura de ecografía -->
-            <div class="absolute top-[20%] left-[10%] w-[80%] h-[55%] rounded-lg overflow-hidden">
-                <img src="${pageContext.request.contextPath}/assets/img/femisalud_logo.webp" alt="Miniatura de publicación" class="">
+        <div class="w-full h-44 relative">
+            <div class="absolute -top-2 left-0 h-6 w-24 bg-femisalud-300 rounded-t-md"></div>
+            <div class="w-full h-44 bg-femisalud-300 rounded-md shadow-md"></div>
+            <div class="absolute top-1 left-[10%] w-[80%] h-[55%] rounded-lg">
+                <img src="${pageContext.request.contextPath}/assets/img/femisalud_logo.webp" alt="Miniatura de publicación">
             </div>
-
-            <!-- Texto alineado a la izquierda con margen -->
             <div class="absolute bottom-[10%] left-[10%] text-white">
-                <p class="text-sm font-bold text-femisalud-900">POST 2</p>
+                <p class="text-sm font-bold text-femisalud-900">POST 1</p>
                 <p class="text-xs text-femisalud-900">22/09/2024 12:12</p>
             </div>
         </div>
-
-        <div class="relative w-[300px] h-[250px]">
-            <!-- Fondo de la carpeta -->
-            <img src="${pageContext.request.contextPath}/assets/img/vector_file.svg" alt="Fondo de carpeta" class="w-full h-full object-cover" />
-            <!-- Miniatura de ecografía -->
-            <div class="absolute top-[20%] left-[10%] w-[80%] h-[55%] rounded-lg overflow-hidden">
-                <img src="${pageContext.request.contextPath}/assets/img/femisalud_logo.webp" alt="Miniatura de publicación" class="">
+        <div class="w-full h-44 relative">
+            <div class="absolute -top-2 left-0 h-6 w-24 bg-femisalud-300 rounded-t-md"></div>
+            <div class="w-full h-44 bg-femisalud-300 rounded-md shadow-md"></div>
+            <div class="absolute top-1 left-[10%] w-[80%] h-[55%] rounded-lg">
+                <img src="${pageContext.request.contextPath}/assets/img/femisalud_logo.webp" alt="Miniatura de publicación">
             </div>
-
-            <!-- Texto alineado a la izquierda con margen -->
             <div class="absolute bottom-[10%] left-[10%] text-white">
-                <p class="text-sm font-bold text-femisalud-900">POST 3</p>
+                <p class="text-sm font-bold text-femisalud-900">POST 1</p>
                 <p class="text-xs text-femisalud-900">22/09/2024 12:12</p>
             </div>
         </div>
-
-        <div class="relative w-[300px] h-[250px]">
-            <!-- Fondo de la carpeta -->
-            <img src="${pageContext.request.contextPath}/assets/img/vector_file.svg" alt="Fondo de carpeta" class="w-full h-full object-cover" />
-            <!-- Miniatura de ecografía -->
-            <div class="absolute top-[20%] left-[10%] w-[80%] h-[55%] rounded-lg overflow-hidden">
-                <img src="${pageContext.request.contextPath}/assets/img/femisalud_logo.webp" alt="Miniatura de publicación" class="">
+        <div class="w-full h-44 relative">
+            <div class="absolute -top-2 left-0 h-6 w-24 bg-femisalud-300 rounded-t-md"></div>
+            <div class="w-full h-44 bg-femisalud-300 rounded-md shadow-md"></div>
+            <div class="absolute top-1 left-[10%] w-[80%] h-[55%] rounded-lg">
+                <img src="${pageContext.request.contextPath}/assets/img/femisalud_logo.webp" alt="Miniatura de publicación">
             </div>
-
-            <!-- Texto alineado a la izquierda con margen -->
             <div class="absolute bottom-[10%] left-[10%] text-white">
-                <p class="text-sm font-bold text-femisalud-900">POST 4</p>
+                <p class="text-sm font-bold text-femisalud-900">POST 1</p>
+                <p class="text-xs text-femisalud-900">22/09/2024 12:12</p>
+            </div>
+        </div>
+        <div class="w-full h-44 relative">
+            <div class="absolute -top-2 left-0 h-6 w-24 bg-femisalud-300 rounded-t-md"></div>
+            <div class="w-full h-44 bg-femisalud-300 rounded-md shadow-md"></div>
+            <div class="absolute top-1 left-[10%] w-[80%] h-[55%] rounded-lg">
+                <img src="${pageContext.request.contextPath}/assets/img/femisalud_logo.webp" alt="Miniatura de publicación">
+            </div>
+            <div class="absolute bottom-[10%] left-[10%] text-white">
+                <p class="text-sm font-bold text-femisalud-900">POST 1</p>
+                <p class="text-xs text-femisalud-900">22/09/2024 12:12</p>
+            </div>
+        </div>
+        <div class="w-full h-44 relative">
+            <div class="absolute -top-2 left-0 h-6 w-24 bg-femisalud-300 rounded-t-md"></div>
+            <div class="w-full h-44 bg-femisalud-300 rounded-md shadow-md"></div>
+            <div class="absolute top-1 left-[10%] w-[80%] h-[55%] rounded-lg">
+                <img src="${pageContext.request.contextPath}/assets/img/femisalud_logo.webp" alt="Miniatura de publicación">
+            </div>
+            <div class="absolute bottom-[10%] left-[10%] text-white">
+                <p class="text-sm font-bold text-femisalud-900">POST 1</p>
+                <p class="text-xs text-femisalud-900">22/09/2024 12:12</p>
+            </div>
+        </div>
+        <div class="w-full h-44 relative">
+            <div class="absolute -top-2 left-0 h-6 w-24 bg-femisalud-300 rounded-t-md"></div>
+            <div class="w-full h-44 bg-femisalud-300 rounded-md shadow-md"></div>
+            <div class="absolute top-1 left-[10%] w-[80%] h-[55%] rounded-lg">
+                <img src="${pageContext.request.contextPath}/assets/img/femisalud_logo.webp" alt="Miniatura de publicación">
+            </div>
+            <div class="absolute bottom-[10%] left-[10%] text-white">
+                <p class="text-sm font-bold text-femisalud-900">POST 1</p>
                 <p class="text-xs text-femisalud-900">22/09/2024 12:12</p>
             </div>
         </div>

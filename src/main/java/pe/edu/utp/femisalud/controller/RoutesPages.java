@@ -30,6 +30,15 @@ public class RoutesPages extends HttpServlet {
             case "/message":
                 req.getRequestDispatcher("/message.jsp").forward(req, resp);
                 break;
+            case "/ultrasound":
+                req.getRequestDispatcher("/ultrasound.jsp").forward(req, resp);
+                break;
+            case "/baby":
+                req.getRequestDispatcher("/baby.jsp").forward(req, resp);
+                break;
+            case "/attention_form":
+                req.getRequestDispatcher("/attentionForm.jsp").forward(req, resp);
+                break;
             default:
                 req.getRequestDispatcher("/404.jsp").forward(req, resp);
                 break;

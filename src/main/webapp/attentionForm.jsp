@@ -17,12 +17,22 @@
 <div class="relative h-full w-64">
     <jsp:include page="fragment/sidebar.jsp"/>
 </div>
-<div class="flex flex-col justify-center items-center w-full min-h-screen bg-gray-100 p-6 overflow-hidden">
-    <div class="max-w-xl mx-auto bg-white p-6 rounded-lg shadow-lg mt-10">
-        <img src="https://s3-alpha-sig.figma.com/img/259f/f3f4/6eaff72a53f264d526eee09c422af776?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fQHOETbVOItFUC6xSijDtDHS26MCVvkYAAlZXvLhzCyZUJQVvlDycVpf3TDO4COIRG~jEEr8Ux3BxE4k6RIlgtCbBMlK9JWiS8LR6tnEyizuJzk71OKzEoOoWdy2gMVAQILjKd3JXNfO~P7eUpxk5ceOPgxrXasHAu7Yb1sMfC-3YDm2tHDYVHagGa81vKDn~jGJJnRJULkTcHcvYo13m2T48FgM0cEoVFnnC~WCffACYIv3eYB0Z4lFF93MuLsEkhI-pdp7omoDbzPvkOlvzOnVesrlq9NPeC~tJkc6RJDsfiGTlhO728LWKd~LY-KqvFMwPBbo4~3rErcM4thaoQ__" alt="FemiSalud Logo" class="w-48 mx-auto mb-4">
+<main class="flex flex-col justify-center items-center w-full bg-white">
+    <div class="w-full p-6 rounded-lg">
+        <div class="w-full flex justify-end items-end mb-4">
+            <img src="${pageContext.request.contextPath}/assets/img/femisalud_blue.png" alt="FemiSalud Logo" class="w-48 mx-auto">
+        </div>
 
         <h1 class="text-center text-2xl font-bold text-blue-600 mb-6">Atención médica en FemiSalud</h1>
-        <p class="text-center text-gray-700 mb-6">Tu opinión es muy valiosa para nosotros, FemiLover. Ayúdanos a mejorar completando este breve formulario sobre la atención que recibiste en FemiSalud. ¡Gracias por confiar en nosotros!</p>
+
+        <div class="w-full flex flex-col justify-center items-start mb-6">
+            <p class="text-center text-femisalud-600 font-bold">
+                Tu opinión es muy valiosa para nosotros, FemiLover. Ayúdanos a mejorar completando este breve formulario sobre la atención que recibiste en FemiSalud.
+            </p>
+            <p class="text-center text-femisalud-600 font-bold">
+                ¡Gracias por confiar en nosotros!
+            </p>
+        </div>
 
         <form>
             <!-- Pregunta 1 -->
@@ -108,9 +118,9 @@
             </div>
         </form>
     </div>
-</div>
+</main>
 <!-- Scripts -->
-<script src="${pageContext.request.contextPath}/assets/js/sidebar.js" defer></script>
-<script src="${pageContext.request.contextPath}/assets/js/atentionForm.js" defer></script>
+<script src="${pageContext.request.contextPath}/assets/js/sidebar.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/atentionForm.js"></script>
 </body>
 </html>
