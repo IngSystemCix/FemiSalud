@@ -11819,6 +11819,10 @@ html, body {
   height:1rem
 }
 
+.h-40{
+  height:10rem
+}
+
 .h-44{
   height:11rem
 }
@@ -11879,8 +11883,8 @@ html, body {
   height:100vh
 }
 
-.h-40{
-  height:10rem
+.h-11{
+  height:2.75rem
 }
 
 .max-h-screen{
@@ -11921,6 +11925,10 @@ html, body {
 
 .w-3{
   width:0.75rem
+}
+
+.w-32{
+  width:8rem
 }
 
 .w-4{
@@ -11983,8 +11991,8 @@ html, body {
   width:100%
 }
 
-.w-32{
-  width:8rem
+.w-1\/4{
+  width:25%
 }
 
 .min-w-full{
@@ -12081,6 +12089,20 @@ html, body {
   animation:bounce 1s infinite
 }
 
+@keyframes confetti-fall{
+  0%{
+    transform:translateY(-100vh)
+  }
+
+  100%{
+    transform:translateY(100vh)
+  }
+}
+
+.animate-confetti-fall{
+  animation:confetti-fall linear infinite
+}
+
 .cursor-default{
   cursor:default
 }
@@ -12161,16 +12183,16 @@ html, body {
   gap:0.75rem
 }
 
+.gap-4{
+  gap:1rem
+}
+
 .gap-6{
   gap:1.5rem
 }
 
 .gap-8{
   gap:2rem
-}
-
-.gap-4{
-  gap:1rem
 }
 
 .gap-y-6{
@@ -12235,6 +12257,12 @@ html, body {
 
 .overflow-y-auto{
   overflow-y:auto
+}
+
+.truncate{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap
 }
 
 .break-words{
@@ -12498,6 +12526,21 @@ html, body {
   background-color:rgb(4 108 78 / var(--tw-bg-opacity))
 }
 
+.bg-indigo-200{
+  --tw-bg-opacity:1;
+  background-color:rgb(205 219 254 / var(--tw-bg-opacity))
+}
+
+.bg-indigo-300{
+  --tw-bg-opacity:1;
+  background-color:rgb(180 198 252 / var(--tw-bg-opacity))
+}
+
+.bg-indigo-500{
+  --tw-bg-opacity:1;
+  background-color:rgb(104 117 245 / var(--tw-bg-opacity))
+}
+
 .bg-lavender-400{
   --tw-bg-opacity:1;
   background-color:rgb(217 196 225 / var(--tw-bg-opacity))
@@ -12562,19 +12605,9 @@ html, body {
   background-color:rgb(252 233 106 / var(--tw-bg-opacity))
 }
 
-.bg-indigo-200{
+.bg-red-400{
   --tw-bg-opacity:1;
-  background-color:rgb(205 219 254 / var(--tw-bg-opacity))
-}
-
-.bg-indigo-300{
-  --tw-bg-opacity:1;
-  background-color:rgb(180 198 252 / var(--tw-bg-opacity))
-}
-
-.bg-indigo-500{
-  --tw-bg-opacity:1;
-  background-color:rgb(104 117 245 / var(--tw-bg-opacity))
+  background-color:rgb(249 128 128 / var(--tw-bg-opacity))
 }
 
 .bg-gradient-to-r{
