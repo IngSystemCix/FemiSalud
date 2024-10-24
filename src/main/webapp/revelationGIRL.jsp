@@ -16,7 +16,7 @@
 <div class="relative h-full w-64">
     <jsp:include page="fragment/sidebar.jsp"/>
 </div>
-<div class="bg-white flex justify-center items-center relative w-full overflow-hidden">
+<div class="bg-white flex justify-center items-center relative w-full">
     <!-- Contenedor del confeti -->
     <div id="confetti-container" class="absolute inset-0 pointer-events-none z-10"></div>
 

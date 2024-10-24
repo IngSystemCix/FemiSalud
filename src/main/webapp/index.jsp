@@ -62,7 +62,7 @@
     <h3 class="text-2xl text-white font-semibold mb-10">Especialistas en Salud de la Mujer</h3>
 
     <div class="relative w-[70%] h-[70%] rounded-full bg-white">
-      <img src="${pageContext.request.contextPath}/assets/img/embarazada-login.webp" alt="Mamá" class="absolute -bottom-20 w-[32rem] h-[43rem] object-cover filter-drop-shadow-50">
+      <img src="${pageContext.request.contextPath}/assets/img/embarazada-login.webp" alt="Mamá" class="absolute -bottom-20 h-full object-cover filter-drop-shadow-50">
     </div>
   </div>
   <script src="${pageContext.request.contextPath}/assets/js/formLogin.js"></script>

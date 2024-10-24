@@ -16,7 +16,7 @@
 <div class="relative h-full w-64">
   <jsp:include page="fragment/sidebar.jsp"/>
 </div>
-<div class="flex justify-center items-center w-full min-h-screen bg-blue-50 h-screen p-6 overflow-hidden">
+<div class="flex justify-center items-center w-full min-h-screen bg-blue-50 h-screen p-6">
   <div class="w-full p-6">
     <!-- Título alineado a la izquierda -->
     <h1 class="text-4xl font-bold text-blue-700 mb-4 text-left">Bebé | Revelación de sexo</h1>
@@ -31,7 +31,7 @@
     </div>
 
     <!-- Contenedor con bordes redondeados, globos, pregunta y conteo -->
-    <div class="bg-white shadow-lg rounded-lg p-40 relative overflow-hidden">
+    <div class="bg-white shadow-lg rounded-lg p-36 relative">
       <!-- Imagen de fondo (globos) -->
       <div class="absolute inset-0 bg-cover opacity-30 rounded-lg" style="background-image: url('https://s3-alpha-sig.figma.com/img/497a/2c47/9b2cbb66416f77c825c56e006039a52e?Expires=1730678400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=BcxTG2IYLCvL9JdTrFUqn8ZQ2D78vIcPTH1EAQG2fj2ag395MvGOHS1O08hMGMKS9iqmci-WFuRmiUPezaADsIvPPWp6sOJO-QhUhLvglrlEuyqF7WCWKXzgj-PCwIu~hLSYHs5K8beqxl0iE-xfi5Iv2yUo1VReyFulV7fEv~dlg1m6zXln6XQO5Ksigw9stPzDz41AMf8EbF2H0TXIF0H58oZAd21IzXqi~oGb80pUb0G8gEdHkIyJdGkR9LoqSe83wg7Mj9AP7uN0eRWkbDpOA4RW7yj8igtVOCmwbIUWcx7V9vDUhYAZy3qzkwsYMjvY6HsZsZP~xRIMn6P10A__');"></div>
 
