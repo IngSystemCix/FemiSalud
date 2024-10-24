@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (counter === 0) {
       clearInterval(interval);
       // Redirigir a la página cuando el contador llega a 0
-      window.location.href = "/femisalud/revelationGIRL.jsp";
+      window.location.href = "/femisalud/revelationBOY.jsp";
     }
   }, 1000);
 });
