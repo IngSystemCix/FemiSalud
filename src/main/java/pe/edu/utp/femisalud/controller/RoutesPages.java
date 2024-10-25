@@ -39,6 +39,9 @@ public class RoutesPages extends HttpServlet {
             case "/attention_form":
                 req.getRequestDispatcher("/attentionForm.jsp").forward(req, resp);
                 break;
+            case "/dashboard_admin":
+                req.getRequestDispatcher("/dashboardAdmin.jsp").forward(req, resp);
+                break;
             default:
                 req.getRequestDispatcher("/404.jsp").forward(req, resp);
                 break;
