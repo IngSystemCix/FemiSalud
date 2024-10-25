@@ -20,6 +20,7 @@
     <h1 class="text-3xl font-bold text-center text-black mb-2">Bienvenida, embajadora de la prevención</h1>
     <h2 class="text-center text-blue-600 text-sm mb-8">Ayuda a tus amigas a cuidar su salud y recibe beneficios exclusivos.</h2>
 
+    <!-- Contenedor de formularios -->
     <div id="form-container" class="w-full h-auto flex overflow-x-auto overflow-hidden gap-3 pb-4">
         <div class="max-w-md mx-auto">
             <form class="w-96 bg-femisalud-300 border border-gray-300 text-gray-900 text-sm pt-12 pb-10 px-10 shadow-lg dark:bg-femisalud-600 dark:border-gray-600 dark:text-white rounded-b-lg rounded-t-[800px]">
@@ -52,11 +53,13 @@
         </div>
     </div>
 
+    <!-- Botones de acción -->
     <div class="flex justify-center mt-8 space-x-4">
         <button class="bg-red-600 text-white px-6 py-2 rounded-lg">Salir del formulario</button>
         <button class="bg-blue-600 text-white px-6 py-2 rounded-lg">Guardar datos</button>
         <button id="add-invitee-btn" class="bg-green-600 text-white px-6 py-2 rounded-lg">Agregar invitado</button>
     </div>
+</div>
 </div>
 <!-- Scripts -->
 <script src="${pageContext.request.contextPath}/assets/js/addForm.js"></script>
