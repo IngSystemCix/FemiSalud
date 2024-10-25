@@ -23,7 +23,8 @@ module.exports = {
       },
       backgroundColor: {
         femisalud: {
-          100: '#f0f8fb',
+          100: '#ffffff',
+          200: '#ddedfc',
           300: '#cee8f9',
           400: '#91BEE1',
           600: '#006eb6',
@@ -31,6 +32,9 @@ module.exports = {
         },
         lavender: {
           400: '#d9c4e1'
+        },
+        verde: {
+          400: '#4fb600',
         }
       },
       keyframes: {

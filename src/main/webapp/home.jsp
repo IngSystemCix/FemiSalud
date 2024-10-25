@@ -5,7 +5,7 @@
     <jsp:include page="fragment/head.jsp"/>
     <title>FemiSalud :: Inicio</title>
 </head>
-<body class="flex w-full h-screen bg-femisalud-300">
+<body class="flex w-full h-screen bg-femisalud-200">
 
 <div class="relative h-full w-64">
     <jsp:include page="fragment/sidebar.jsp"/>
@@ -25,7 +25,7 @@
     </section>
 
     <!-- Sección de notificaciones -->
-    <section class="flex flex-col relative w-auto bg-white">
+    <section class="flex flex-col relative w-auto bg-white h-full">
         <jsp:include page="fragment/notification.jsp"/>
     </section>
 </main>

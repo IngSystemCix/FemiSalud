@@ -12,11 +12,11 @@
   <jsp:include page="fragment/head.jsp"/>
   <title>FemiSalud</title>
 </head>
-<body class="flex justify-center items-center w-full h-screen bg-femisalud-300">
+<body class="flex justify-center items-center w-full h-screen bg-femisalud-200">
   <form action="" method="post" class="w-full h-full flex flex-col justify-center items-start p-6 gap-6">
     <div class="w-full text-center">
       <h1 class="text-8xl text-center font-semibold mb-10 text-femisalud-600">FemiSalud</h1>
-      <h2 class="text-4xl font-bold text-femisalud-600">Inico de sesión</h2>
+      <h2 class="text-4xl font-bold">Inicio de sesión</h2>
     </div>
     <div class="w-full h-full flex flex-col justify-center items-start gap-6">
       <div class="w-full">
@@ -54,11 +54,11 @@
       </div>
       <div class="w-full flex justify-center items-center gap-6">
         <button type="button" id="button-return" class="w-full focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-2xl px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 hidden">Regresar</button>
-        <button type="button" id="button-get_code" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Obtener código</button>
+        <button type="button" id="button-get_code" class="w-full text-white bg-femisalud-900 hover:bg-femisalud-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-2.5 me-2 mb-2 dark:bg-femisalud-900 dark:hover:bg-femisalud-800 focus:outline-none dark:focus:ring-blue-800">Obtener código</button>
       </div>
     </div>
   </form>
-  <div class="relative w-full h-full bg-femisalud-600 flex flex-col items-center justify-center rounded-l-3xl">
+  <div class="relative w-full h-full bg-femisalud-900 flex flex-col items-center justify-center rounded-l-3xl">
     <h3 class="text-2xl text-white font-semibold mb-10">Especialistas en Salud de la Mujer</h3>
 
     <div class="relative w-[70%] h-[70%] rounded-full bg-white">

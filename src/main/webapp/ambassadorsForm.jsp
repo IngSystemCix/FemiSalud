@@ -55,6 +55,7 @@
     <div class="flex justify-center mt-8 space-x-4">
         <button class="bg-red-600 text-white px-6 py-2 rounded-lg">Salir del formulario</button>
         <button class="bg-blue-600 text-white px-6 py-2 rounded-lg">Guardar datos</button>
+        <button id="add-invitee-btn" class="bg-green-600 text-white px-6 py-2 rounded-lg">Agregar invitado</button>
     </div>
 </div>
 <!-- Scripts -->

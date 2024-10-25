@@ -10,7 +10,7 @@
     <div class="w-[70%]">
         <h2 class="text-2xl font-bold text-femisalud-900 mb-2">Bienvenida a FemiSalud</h2>
         <p>
-            Querida futura mamá Briggitte,
+            Querida futura mamá,
         </p>
         <p>
             Sabemos que estás viviendo uno de los momentos más emocionantes y transformadores de tu vida.

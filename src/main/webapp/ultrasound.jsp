@@ -32,7 +32,7 @@
             <div class="w-full h-full bg-femisalud-600 rounded-md shadow-md"></div>
         </div>
         <div class="flex justify-center mt-8 space-x-4">
-            <button class="bg-femisalud-900 text-white px-6 py-2 rounded-lg">Calificar atención</button>
+            <button onclick="window.location.href='attentionForm.jsp'" class="bg-femisalud-900 text-white px-6 py-2 rounded-lg">Calificar atención</button>
             <button class="bg-lime-500 text-white px-6 py-2 rounded-lg">Descargar video</button>
         </div>
     </section>

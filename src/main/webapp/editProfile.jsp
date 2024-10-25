@@ -22,7 +22,7 @@
 
     <!-- Contenedor principal ajustado para ocupar el resto del espacio disponible -->
     <main class="bg-gray-100 h-full w-full flex justify-center items-center h-screen ">
-        <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-lg">
+        <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-2xl h-[70%]">
 
             <!-- Título de la sección -->
             <h2 class="text-xl font-bold mb-4 text-blue-700 text-start">Perfil</h2>
