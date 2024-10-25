@@ -20,7 +20,7 @@
     <!-- Sidebar de Filtros -->
     <div class="w-full p-6 bg-gradient-to-r from-white via-white to-transparent">
         <h1 class="text-2xl font-bold mb-4">Bebé</h1>
-        <p class="text-gray-600 mb-6">Filtra y elige el nombre ideal para tu bebé.</p>
+        <p class="text-gray-600 mb-6">Filtra y escoge el nombre ideal para tu bebé.</p>
 
         <div>
             <h2 class="font-bold mb-2">Filtrar por</h2>
