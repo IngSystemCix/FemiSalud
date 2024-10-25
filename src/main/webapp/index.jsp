@@ -54,7 +54,7 @@
       </div>
       <div class="w-full flex justify-center items-center gap-6">
         <button type="button" id="button-return" class="w-full focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-2xl px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 hidden">Regresar</button>
-        <button type="button" id="button-get_code" class="w-full text-white bg-femisalud-600 hover:bg-femisalud-900 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-2.5 me-2 mb-2">Obtener código</button>
+        <button type="button" id="button-get_code" class="w-full text-white bg-femisalud-900 hover:bg-femisalud-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-2.5 me-2 mb-2">Obtener código</button>
       </div>
     </div>
   </form>
