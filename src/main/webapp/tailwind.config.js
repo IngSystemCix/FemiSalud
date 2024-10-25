@@ -12,8 +12,10 @@ module.exports = {
       colors: {
         "femisalud": {
           100: '#f0f8fb',
+          200: '#ddedfc',
           300: '#cee8f9',
           400: '#91BEE1',
+          500: '#42abee',
           600: '#006eb6',
           900: '#11568f'
         },

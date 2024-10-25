@@ -11484,6 +11484,10 @@ html, body {
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.50));
 }
 
+.no-resize {
+  resize: none;
+}
+
 .container{
   width:100%
 }
@@ -11958,6 +11962,10 @@ html, body {
   width:22rem
 }
 
+.w-\[30\%\]{
+  width:30%
+}
+
 .w-\[70\%\]{
   width:70%
 }
@@ -11990,8 +11998,8 @@ html, body {
   max-width:42rem
 }
 
-.max-w-6xl{
-  max-width:72rem
+.max-w-7xl{
+  max-width:80rem
 }
 
 .max-w-full{
@@ -12110,6 +12118,10 @@ html, body {
   resize:both
 }
 
+.grid-cols-1{
+  grid-template-columns:repeat(1, minmax(0, 1fr))
+}
+
 .grid-cols-2{
   grid-template-columns:repeat(2, minmax(0, 1fr))
 }
@@ -12218,12 +12230,6 @@ html, body {
   --tw-space-x-reverse:0;
   margin-right:calc(1.5rem * var(--tw-space-x-reverse));
   margin-left:calc(1.5rem * calc(1 - var(--tw-space-x-reverse)))
-}
-
-.space-x-8 > :not([hidden]) ~ :not([hidden]){
-  --tw-space-x-reverse:0;
-  margin-right:calc(2rem * var(--tw-space-x-reverse));
-  margin-left:calc(2rem * calc(1 - var(--tw-space-x-reverse)))
 }
 
 .space-y-2 > :not([hidden]) ~ :not([hidden]){
@@ -12438,6 +12444,11 @@ html, body {
   background-color:rgb(240 248 251 / var(--tw-bg-opacity))
 }
 
+.bg-femisalud-200{
+  --tw-bg-opacity:1;
+  background-color:rgb(221 237 252 / var(--tw-bg-opacity))
+}
+
 .bg-femisalud-300{
   --tw-bg-opacity:1;
   background-color:rgb(206 232 249 / var(--tw-bg-opacity))
@@ -12446,6 +12457,11 @@ html, body {
 .bg-femisalud-400{
   --tw-bg-opacity:1;
   background-color:rgb(145 190 225 / var(--tw-bg-opacity))
+}
+
+.bg-femisalud-500{
+  --tw-bg-opacity:1;
+  background-color:rgb(66 171 238 / var(--tw-bg-opacity))
 }
 
 .bg-femisalud-600{
@@ -12580,6 +12596,11 @@ html, body {
 .bg-red-700{
   --tw-bg-opacity:1;
   background-color:rgb(200 30 30 / var(--tw-bg-opacity))
+}
+
+.bg-verde-400{
+  --tw-bg-opacity:1;
+  background-color:rgb(79 182 0 / var(--tw-bg-opacity))
 }
 
 .bg-white{
@@ -12877,10 +12898,6 @@ html, body {
   line-height:2.25rem
 }
 
-.leading-normal{
-  line-height:1.5
-}
-
 .text-black{
   --tw-text-opacity:1;
   color:rgb(0 0 0 / var(--tw-text-opacity))
@@ -13082,9 +13099,9 @@ html, body {
   background-color:rgb(30 66 159 / var(--tw-bg-opacity))
 }
 
-.hover\:bg-femisalud-900:hover{
+.hover\:bg-femisalud-600:hover{
   --tw-bg-opacity:1;
-  background-color:rgb(17 86 143 / var(--tw-bg-opacity))
+  background-color:rgb(0 110 182 / var(--tw-bg-opacity))
 }
 
 .hover\:bg-gray-100:hover{
@@ -13110,11 +13127,6 @@ html, body {
 .hover\:bg-purple-600:hover{
   --tw-bg-opacity:1;
   background-color:rgb(126 58 242 / var(--tw-bg-opacity))
-}
-
-.hover\:bg-red-600:hover{
-  --tw-bg-opacity:1;
-  background-color:rgb(224 36 36 / var(--tw-bg-opacity))
 }
 
 .hover\:bg-red-800:hover{
@@ -13379,11 +13391,6 @@ html, body {
   .sm\:grid-cols-1{
     grid-template-columns:repeat(1, minmax(0, 1fr))
   }
-
-  .sm\:text-sm{
-    font-size:0.875rem;
-    line-height:1.25rem
-  }
 }
 
 @media (min-width: 768px){
@@ -13404,6 +13411,12 @@ html, body {
   .md\:text-lg{
     font-size:1.125rem;
     line-height:1.75rem
+  }
+}
+
+@media (min-width: 1024px){
+  .lg\:grid-cols-2{
+    grid-template-columns:repeat(2, minmax(0, 1fr))
   }
 }
 
