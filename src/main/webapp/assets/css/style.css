@@ -12091,7 +12091,7 @@ html, body {
 }
 
 .animate-confetti-fall{
-  animation:confetti-fall linear infinite
+  animation:confetti-fall 2s linear infinite
 }
 
 .cursor-default{
@@ -12435,12 +12435,7 @@ html, body {
 
 .bg-femisalud-100{
   --tw-bg-opacity:1;
-  background-color:rgb(255 255 255 / var(--tw-bg-opacity))
-}
-
-.bg-femisalud-200{
-  --tw-bg-opacity:1;
-  background-color:rgb(221 237 252 / var(--tw-bg-opacity))
+  background-color:rgb(240 248 251 / var(--tw-bg-opacity))
 }
 
 .bg-femisalud-300{
@@ -13087,6 +13082,11 @@ html, body {
   background-color:rgb(30 66 159 / var(--tw-bg-opacity))
 }
 
+.hover\:bg-femisalud-900:hover{
+  --tw-bg-opacity:1;
+  background-color:rgb(17 86 143 / var(--tw-bg-opacity))
+}
+
 .hover\:bg-gray-100:hover{
   --tw-bg-opacity:1;
   background-color:rgb(243 244 246 / var(--tw-bg-opacity))
@@ -13242,11 +13242,6 @@ html, body {
   background-color:rgb(0 110 182 / var(--tw-bg-opacity))
 }
 
-.dark\:bg-femisalud-900:is(.dark *){
-  --tw-bg-opacity:1;
-  background-color:rgb(17 86 143 / var(--tw-bg-opacity))
-}
-
 .dark\:bg-gray-600:is(.dark *){
   --tw-bg-opacity:1;
   background-color:rgb(75 85 99 / var(--tw-bg-opacity))
@@ -13368,11 +13363,6 @@ html, body {
 .dark\:focus\:ring-blue-500:focus:is(.dark *){
   --tw-ring-opacity:1;
   --tw-ring-color:rgb(63 131 248 / var(--tw-ring-opacity))
-}
-
-.dark\:focus\:ring-blue-800:focus:is(.dark *){
-  --tw-ring-opacity:1;
-  --tw-ring-color:rgb(30 66 159 / var(--tw-ring-opacity))
 }
 
 .dark\:focus\:ring-green-800:focus:is(.dark *){
