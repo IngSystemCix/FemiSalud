@@ -1,11 +1,7 @@
 package pe.edu.utp.femisalud.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
@@ -17,10 +13,15 @@ public class User {
     @Column(name = "id_user", nullable = false)
     private Long id;
 
-    @Size(max = 8)
     @NotNull
-    @Column(name = "id_patient", nullable = false, length = 8)
-    private String idPatient;
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "dni", nullable = false)
+    private Administrator dni;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_role", nullable = false)
+    private Role idRole;
 
     @NotNull
     @ColumnDefault("current_timestamp()")
@@ -40,12 +41,20 @@ public class User {
         this.id = id;
     }
 
-    public String getIdPatient() {
-        return idPatient;
+    public Administrator getDni() {
+        return dni;
     }
 
-    public void setIdPatient(String idPatient) {
-        this.idPatient = idPatient;
+    public void setDni(Administrator dni) {
+        this.dni = dni;
+    }
+
+    public Role getIdRole() {
+        return idRole;
+    }
+
+    public void setIdRole(Role idRole) {
+        this.idRole = idRole;
     }
 
     public Instant getCreatedAt() {

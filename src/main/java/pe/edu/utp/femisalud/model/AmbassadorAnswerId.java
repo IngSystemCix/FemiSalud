@@ -11,22 +11,22 @@ import java.util.Objects;
 
 @Embeddable
 public class AmbassadorAnswerId implements Serializable {
-    private static final long serialVersionUID = -1689154635950360442L;
+    private static final long serialVersionUID = -5917263948477383217L;
     @Size(max = 8)
     @NotNull
-    @Column(name = "id_patient", nullable = false, length = 8)
-    private String idPatient;
+    @Column(name = "dni_patient", nullable = false, length = 8)
+    private String dniPatient;
 
     @NotNull
     @Column(name = "id_ambassador", nullable = false)
     private Long idAmbassador;
 
-    public String getIdPatient() {
-        return idPatient;
+    public String getDniPatient() {
+        return dniPatient;
     }
 
-    public void setIdPatient(String idPatient) {
-        this.idPatient = idPatient;
+    public void setDniPatient(String dniPatient) {
+        this.dniPatient = dniPatient;
     }
 
     public Long getIdAmbassador() {
@@ -43,12 +43,12 @@ public class AmbassadorAnswerId implements Serializable {
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         AmbassadorAnswerId entity = (AmbassadorAnswerId) o;
         return Objects.equals(this.idAmbassador, entity.idAmbassador) &&
-                Objects.equals(this.idPatient, entity.idPatient);
+                Objects.equals(this.dniPatient, entity.dniPatient);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idAmbassador, idPatient);
+        return Objects.hash(idAmbassador, dniPatient);
     }
 
 }

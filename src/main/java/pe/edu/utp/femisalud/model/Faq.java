@@ -3,8 +3,6 @@ package pe.edu.utp.femisalud.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "FAQ", schema = "femisalud_db")
@@ -15,9 +13,8 @@ public class Faq {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "id_patient", nullable = false)
-    private Patient idPatient;
+    @JoinColumn(name = "dni_patient", nullable = false)
+    private Patient dniPatient;
 
     @Size(max = 255)
     @NotNull
@@ -25,8 +22,7 @@ public class Faq {
     private String question;
 
     @Size(max = 255)
-    @NotNull
-    @Column(name = "answer", nullable = false)
+    @Column(name = "answer")
     private String answer;
 
     public Long getId() {
@@ -37,12 +33,12 @@ public class Faq {
         this.id = id;
     }
 
-    public Patient getIdPatient() {
-        return idPatient;
+    public Patient getDniPatient() {
+        return dniPatient;
     }
 
-    public void setIdPatient(Patient idPatient) {
-        this.idPatient = idPatient;
+    public void setDniPatient(Patient dniPatient) {
+        this.dniPatient = dniPatient;
     }
 
     public String getQuestion() {

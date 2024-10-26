@@ -25,9 +25,8 @@ public class AspectsOfCare {
     private Boolean selected = false;
 
     @Size(max = 255)
-    @NotNull
-    @ColumnDefault("'No data'")
-    @Column(name = "other", nullable = false)
+    @ColumnDefault("'Sin datos'")
+    @Column(name = "other")
     private String other;
 
     public Long getId() {

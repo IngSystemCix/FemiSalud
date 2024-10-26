@@ -16,9 +16,9 @@ public class Patient {
     @Column(name = "dni", nullable = false, length = 8)
     private String dni;
 
-    @Size(max = 25)
+    @Size(max = 50)
     @NotNull
-    @Column(name = "full_name", nullable = false, length = 25)
+    @Column(name = "full_name", nullable = false, length = 50)
     private String fullName;
 
     @Size(max = 25)
@@ -46,6 +46,7 @@ public class Patient {
     private String phoneNumber;
 
     @NotNull
+    @ColumnDefault("'UNIQUE'")
     @Lob
     @Column(name = "birth_type", nullable = false)
     private String birthType;

@@ -3,8 +3,6 @@ package pe.edu.utp.femisalud.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.Instant;
 
@@ -17,7 +15,6 @@ public class UltrasoundView {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_ultrasound", nullable = false)
     private Ultrasound idUltrasound;
 
@@ -28,9 +25,8 @@ public class UltrasoundView {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "id_user", nullable = false)
-    private User idUser;
+    @JoinColumn(name = "dni_patient", nullable = false)
+    private Patient dniPatient;
 
     public Long getId() {
         return id;
@@ -56,12 +52,12 @@ public class UltrasoundView {
         this.viewDate = viewDate;
     }
 
-    public User getIdUser() {
-        return idUser;
+    public Patient getDniPatient() {
+        return dniPatient;
     }
 
-    public void setIdUser(User idUser) {
-        this.idUser = idUser;
+    public void setDniPatient(Patient dniPatient) {
+        this.dniPatient = dniPatient;
     }
 
 }

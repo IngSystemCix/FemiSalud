@@ -3,8 +3,6 @@ package pe.edu.utp.femisalud.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "FAVOURITE", schema = "femisalud_db")
@@ -20,9 +18,8 @@ public class Favourite {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "dni", nullable = false)
-    private Patient dni;
+    @JoinColumn(name = "dni_patient", nullable = false)
+    private Patient dniPatient;
 
     @NotNull
     @Column(name = "star", nullable = false)
@@ -44,12 +41,12 @@ public class Favourite {
         this.name = name;
     }
 
-    public Patient getDni() {
-        return dni;
+    public Patient getDniPatient() {
+        return dniPatient;
     }
 
-    public void setDni(Patient dni) {
-        this.dni = dni;
+    public void setDniPatient(Patient dniPatient) {
+        this.dniPatient = dniPatient;
     }
 
     public Boolean getStar() {

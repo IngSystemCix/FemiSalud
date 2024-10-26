@@ -3,8 +3,6 @@ package pe.edu.utp.femisalud.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.Instant;
 
@@ -22,9 +20,8 @@ public class CallCenter {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "id_patient", nullable = false)
-    private Patient idPatient;
+    @JoinColumn(name = "dni_patient", nullable = false)
+    private Patient dniPatient;
 
     @NotNull
     @ColumnDefault("current_timestamp()")
@@ -57,12 +54,12 @@ public class CallCenter {
         this.idMessage = idMessage;
     }
 
-    public Patient getIdPatient() {
-        return idPatient;
+    public Patient getDniPatient() {
+        return dniPatient;
     }
 
-    public void setIdPatient(Patient idPatient) {
-        this.idPatient = idPatient;
+    public void setDniPatient(Patient dniPatient) {
+        this.dniPatient = dniPatient;
     }
 
     public Instant getMessageDate() {

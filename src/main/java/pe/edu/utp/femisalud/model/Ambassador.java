@@ -21,8 +21,8 @@ public class Ambassador {
 
     @Size(max = 8)
     @NotNull
-    @Column(name = "dni", nullable = false, length = 8)
-    private String dni;
+    @Column(name = "dni_patient", nullable = false, length = 8)
+    private String dniPatient;
 
     @Size(max = 9)
     @NotNull
@@ -50,12 +50,12 @@ public class Ambassador {
         this.name = name;
     }
 
-    public String getDni() {
-        return dni;
+    public String getDniPatient() {
+        return dniPatient;
     }
 
-    public void setDni(String dni) {
-        this.dni = dni;
+    public void setDniPatient(String dniPatient) {
+        this.dniPatient = dniPatient;
     }
 
     public String getPhone() {

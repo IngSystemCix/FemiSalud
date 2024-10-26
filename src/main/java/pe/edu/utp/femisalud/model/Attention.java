@@ -3,8 +3,6 @@ package pe.edu.utp.femisalud.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.Instant;
 
@@ -25,9 +23,9 @@ public class Attention {
     @Column(name = "attention_date", nullable = false)
     private Instant attentionDate;
 
-    @Size(max = 25)
+    @Size(max = 50)
     @NotNull
-    @Column(name = "doctor_name", nullable = false, length = 25)
+    @Column(name = "doctor_name", nullable = false, length = 50)
     private String doctorName;
 
     @Size(max = 6)
@@ -42,9 +40,8 @@ public class Attention {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "id_user", nullable = false)
-    private User idUser;
+    @JoinColumn(name = "dni_patient", nullable = false)
+    private Patient dniPatient;
 
     public String getAttentionNumber() {
         return attentionNumber;
@@ -94,12 +91,12 @@ public class Attention {
         this.patientCode = patientCode;
     }
 
-    public User getIdUser() {
-        return idUser;
+    public Patient getDniPatient() {
+        return dniPatient;
     }
 
-    public void setIdUser(User idUser) {
-        this.idUser = idUser;
+    public void setDniPatient(Patient dniPatient) {
+        this.dniPatient = dniPatient;
     }
 
 }

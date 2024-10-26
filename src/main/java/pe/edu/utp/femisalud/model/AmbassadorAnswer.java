@@ -1,8 +1,6 @@
 package pe.edu.utp.femisalud.model;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "AMBASSADOR_ANSWER", schema = "femisalud_db")
@@ -10,15 +8,13 @@ public class AmbassadorAnswer {
     @EmbeddedId
     private AmbassadorAnswerId id;
 
-    @MapsId("idPatient")
+    @MapsId("dniPatient")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "id_patient", nullable = false)
-    private Patient idPatient;
+    @JoinColumn(name = "dni_patient", nullable = false)
+    private Patient dniPatient;
 
     @MapsId("idAmbassador")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "id_ambassador", nullable = false)
     private Ambassador idAmbassador;
 
@@ -30,12 +26,12 @@ public class AmbassadorAnswer {
         this.id = id;
     }
 
-    public Patient getIdPatient() {
-        return idPatient;
+    public Patient getDniPatient() {
+        return dniPatient;
     }
 
-    public void setIdPatient(Patient idPatient) {
-        this.idPatient = idPatient;
+    public void setDniPatient(Patient dniPatient) {
+        this.dniPatient = dniPatient;
     }
 
     public Ambassador getIdAmbassador() {

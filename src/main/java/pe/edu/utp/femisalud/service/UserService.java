@@ -1,5 +1,5 @@
 package pe.edu.utp.femisalud.service;
 
 public interface UserService {
-    public void generateReport();
+    public void generateReport(String name);
 }

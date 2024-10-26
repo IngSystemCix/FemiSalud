@@ -39,3 +39,6 @@ build/
 
 ### nodeJS ###
 /src/main/webapp/node_modules/
+
+### Enviroment ###
+.env
