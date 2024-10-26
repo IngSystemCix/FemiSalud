@@ -20,7 +20,10 @@ module.exports = {
           900: '#11568f'
         },
         "lavender": {
-          400: '#d9c4e1'
+          200: '#e6e6fa',
+          300:'#dbdbf9',
+          400: '#d9c4e1',
+          700:'#9f9aeb'
         },
         "verde": {
           400: '#4fb600'
