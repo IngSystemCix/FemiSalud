@@ -3,7 +3,32 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
-  <persistence-unit name="default">
-
+  <persistence-unit name="femisalud_db" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <class>pe.edu.utp.femisalud.model.User</class>
+    <class>pe.edu.utp.femisalud.model.Administrator</class>
+    <class>pe.edu.utp.femisalud.model.Ambassador</class>
+    <class>pe.edu.utp.femisalud.model.AmbassadorAnswer</class>
+    <class>pe.edu.utp.femisalud.model.AmbassadorAnswerId</class>
+    <class>pe.edu.utp.femisalud.model.AspectsOfCare</class>
+    <class>pe.edu.utp.femisalud.model.Assistant</class>
+    <class>pe.edu.utp.femisalud.model.Attention</class>
+    <class>pe.edu.utp.femisalud.model.AttentionForm</class>
+    <class>pe.edu.utp.femisalud.model.Baby</class>
+    <class>pe.edu.utp.femisalud.model.Faq</class>
+    <class>pe.edu.utp.femisalud.model.Favourite</class>
+    <class>pe.edu.utp.femisalud.model.Message</class>
+    <class>pe.edu.utp.femisalud.model.Patient</class>
+    <class>pe.edu.utp.femisalud.model.Role</class>
+    <class>pe.edu.utp.femisalud.model.Ultrasound</class>
+    <class>pe.edu.utp.femisalud.model.UltrasoundView</class>
+    <properties>
+      <property name="hibernate.connection.driver_class" value="org.mariadb.jdbc.Driver"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.format_sql" value="true"/>
+      <property name="hibernate.use_sql_comments" value="true"/>
+    </properties>
   </persistence-unit>
 </persistence>

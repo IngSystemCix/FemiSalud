@@ -10,7 +10,6 @@ import java.io.IOException;
 public class RoutesPages extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Obtener el path de la solicitud
         String path = req.getServletPath();
 
         switch (path) {

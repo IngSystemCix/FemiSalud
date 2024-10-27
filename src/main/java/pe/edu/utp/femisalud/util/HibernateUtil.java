@@ -7,6 +7,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
@@ -14,29 +16,34 @@ import java.util.Properties;
 public class HibernateUtil {
     private EntityManagerFactory entityManagerFactory;
     private static final Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
+    private static final Logger LOGGER = LoggerFactory.getLogger(HibernateUtil.class);
 
     @PostConstruct
     public void init() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("femisalud_db");
+        try {
+            entityManagerFactory = Persistence.createEntityManagerFactory("femisalud_db", getProperties());
+        } catch (Exception e) {
+            // Log the exception instead of printing the stack trace
+            LOGGER.error("Error initializing EntityManagerFactory", e);
+        }
     }
 
     public EntityManager getEntityManager() {
+        if (entityManagerFactory == null) {
+            throw new IllegalStateException("EntityManagerFactory has not been initialized.");
+        }
         return entityManagerFactory.createEntityManager();
     }
 
     private Properties getProperties() {
         Properties properties = new Properties();
-        properties.put("jakarta.persistence.jdbc.url", "jdbc:mysql://" + dotenv.get("HOST_DB") + ":"+ dotenv.get("PORT_DB") +"/" + dotenv.get("DB_NAME"));
+        properties.put("jakarta.persistence.jdbc.url",
+                "jdbc:mariadb://" + dotenv.get("HOST_DB") + ":" + dotenv.get("PORT_DB") + "/" + dotenv.get("DB_NAME"));
         properties.put("jakarta.persistence.jdbc.user", dotenv.get("USER_DB"));
         properties.put("jakarta.persistence.jdbc.password", dotenv.get("PASS_DB"));
         properties.put("jakarta.persistence.jdbc.driver", "org.mariadb.jdbc.Driver");
-        properties.put("jakarta.persistence.schema-generation.database.action", "create");
-        properties.put("jakarta.persistence.schema-generation.create-source", "metadata");
-        properties.put("jakarta.persistence.schema-generation.drop-source", "metadata");
-        properties.put("jakarta.persistence.schema-generation.scripts.action", "create");
-        properties.put("jakarta.persistence.schema-generation.scripts.create-target", "create.sql");
-        properties.put("jakarta.persistence.schema-generation.scripts.drop-target", "drop.sql");
-        properties.put("jakarta.persistence.sql-load-script-source", "data.sql");
+        properties.put("jakarta.persistence.schema-generation.database.action", "update");
+        properties.put("hibernate.dialect", "org.hibernate.dialect.MariaDBDialect"); // Corrección del nombre de la propiedad
         return properties;
     }
 
@@ -44,6 +51,12 @@ public class HibernateUtil {
     public void cleanUp() {
         if (entityManagerFactory != null) {
             entityManagerFactory.close();
+            LOGGER.info("EntityManagerFactory closed successfully.");
         }
+    }
+
+    // Método para establecer un EntityManagerFactory simulado en las pruebas
+    public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
+        this.entityManagerFactory = entityManagerFactory;
     }
 }

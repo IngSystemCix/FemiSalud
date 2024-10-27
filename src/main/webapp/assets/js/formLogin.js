@@ -44,5 +44,5 @@ buttonReturn.addEventListener('click', () => {
     // Revertimos los cambios al botón, vuelve a ser "Obtener código"
     buttonGetCode.id = 'button_get_code';
     buttonGetCode.textContent = 'Obtener código';  // Cambiamos el texto de nuevo
-    buttonGetCode.type = 'button';  // Cambiamos el tipo del botón a "button"
+    buttonGetCode.type = 'submit';  // Cambiamos el tipo del botón a "button"
 });
