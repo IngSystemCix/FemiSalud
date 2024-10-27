@@ -7,9 +7,11 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "AMBASSADOR", schema = "femisalud_db")
-public class Ambassador {
+public class Ambassador implements Serializable {
     @Id
     @Column(name = "id_ambassador", nullable = false)
     private Long id;

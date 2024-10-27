@@ -4,9 +4,11 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "FAVOURITE", schema = "femisalud_db")
-public class Favourite {
+public class Favourite implements Serializable {
     @Id
     @Column(name = "id_fav", nullable = false)
     private Long id;
@@ -18,7 +20,7 @@ public class Favourite {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "dni_patient", nullable = false)
+    @JoinColumn(name = "dni_patient", nullable = false, referencedColumnName = "dni")
     private Patient dniPatient;
 
     @NotNull

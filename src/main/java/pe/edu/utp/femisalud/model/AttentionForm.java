@@ -3,16 +3,18 @@ package pe.edu.utp.femisalud.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "ATTENTION_FORM", schema = "femisalud_db")
-public class AttentionForm {
+public class AttentionForm implements Serializable {
     @Id
     @Column(name = "id_attention_form", nullable = false)
     private Long id;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "dni_patient", nullable = false)
+    @JoinColumn(name = "dni_patient", nullable = false, referencedColumnName = "dni")
     private Patient dniPatient;
 
     @NotNull

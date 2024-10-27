@@ -8,9 +8,11 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "ASPECTS_OF_CARE", schema = "femisalud_db")
-public class AspectsOfCare {
+public class AspectsOfCare implements Serializable {
     @Id
     @Column(name = "id_aspects_of_care", nullable = false)
     private Long id;

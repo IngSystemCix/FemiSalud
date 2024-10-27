@@ -3,9 +3,11 @@ package pe.edu.utp.femisalud.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "ROLE", schema = "femisalud_db")
-public class Role {
+public class Role implements Serializable {
     @Id
     @Column(name = "id_role", nullable = false)
     private Long id;

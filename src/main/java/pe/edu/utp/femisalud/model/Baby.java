@@ -5,11 +5,12 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 @Entity
 @Table(name = "BABY", schema = "femisalud_db")
-public class Baby {
+public class Baby implements Serializable {
     @Id
     @Column(name = "id_baby", nullable = false)
     private Long id;

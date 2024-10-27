@@ -4,11 +4,12 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 @Entity
 @Table(name = "ULTRASOUND_VIEW", schema = "femisalud_db")
-public class UltrasoundView {
+public class UltrasoundView implements Serializable {
     @Id
     @Column(name = "id_view", nullable = false)
     private Long id;
@@ -25,7 +26,7 @@ public class UltrasoundView {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "dni_patient", nullable = false)
+    @JoinColumn(name = "dni_patient", nullable = false, referencedColumnName = "dni")
     private Patient dniPatient;
 
     public Long getId() {

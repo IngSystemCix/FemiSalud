@@ -4,16 +4,18 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "FAQ", schema = "femisalud_db")
-public class Faq {
+public class Faq implements Serializable {
     @Id
     @Column(name = "id_faq", nullable = false)
     private Long id;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "dni_patient", nullable = false)
+    @JoinColumn(name = "dni_patient", nullable = false, referencedColumnName = "dni")
     private Patient dniPatient;
 
     @Size(max = 255)

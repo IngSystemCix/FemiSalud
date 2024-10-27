@@ -5,14 +5,19 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "PATIENT", schema = "femisalud_db")
-public class Patient {
+public class Patient implements Serializable {
     @Id
+    @Column(name = "id_patient", nullable = false)
+    private Long id;
+
     @Size(max = 8)
+    @NotNull
     @Column(name = "dni", nullable = false, length = 8)
     private String dni;
 
@@ -46,7 +51,6 @@ public class Patient {
     private String phoneNumber;
 
     @NotNull
-    @ColumnDefault("'UNIQUE'")
     @Lob
     @Column(name = "birth_type", nullable = false)
     private String birthType;
@@ -60,6 +64,14 @@ public class Patient {
     @ColumnDefault("current_timestamp()")
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getDni() {
         return dni;

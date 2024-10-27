@@ -7,11 +7,17 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "ASSISTANT", schema = "femisalud_db")
-public class Assistant {
+public class Assistant implements Serializable {
     @Id
+    @Column(name = "id_assistant", nullable = false)
+    private Long id;
+
     @Size(max = 8)
+    @NotNull
     @Column(name = "dni", nullable = false, length = 8)
     private String dni;
 
@@ -34,6 +40,14 @@ public class Assistant {
     @NotNull
     @Column(name = "maternal_surname", nullable = false, length = 25)
     private String maternalSurname;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getDni() {
         return dni;

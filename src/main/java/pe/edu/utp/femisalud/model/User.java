@@ -2,21 +2,23 @@ package pe.edu.utp.femisalud.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 @Entity
 @Table(name = "USER", schema = "femisalud_db")
-public class User {
+public class User implements Serializable {
     @Id
     @Column(name = "id_user", nullable = false)
     private Long id;
 
+    @Size(max = 8)
     @NotNull
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "dni", nullable = false)
-    private Administrator dni;
+    @Column(name = "dni", nullable = false, length = 8)
+    private String dni;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -41,11 +43,11 @@ public class User {
         this.id = id;
     }
 
-    public Administrator getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(Administrator dni) {
+    public void setDni(String dni) {
         this.dni = dni;
     }
 

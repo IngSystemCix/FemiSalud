@@ -2,15 +2,17 @@ package pe.edu.utp.femisalud.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "AMBASSADOR_ANSWER", schema = "femisalud_db")
-public class AmbassadorAnswer {
+public class AmbassadorAnswer implements Serializable {
     @EmbeddedId
     private AmbassadorAnswerId id;
 
     @MapsId("dniPatient")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "dni_patient", nullable = false)
+    @JoinColumn(name = "dni_patient", nullable = false, referencedColumnName = "dni")
     private Patient dniPatient;
 
     @MapsId("idAmbassador")

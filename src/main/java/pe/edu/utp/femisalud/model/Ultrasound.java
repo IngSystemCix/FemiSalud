@@ -5,11 +5,12 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.io.Serializable;
 import java.time.Instant;
 
 @Entity
 @Table(name = "ULTRASOUND", schema = "femisalud_db")
-public class Ultrasound {
+public class Ultrasound implements Serializable {
     @Id
     @Column(name = "id_ultrasound", nullable = false)
     private Long id;
@@ -49,7 +50,7 @@ public class Ultrasound {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "dni_patient", nullable = false)
+    @JoinColumn(name = "dni_patient", nullable = false, referencedColumnName = "dni")
     private Patient dniPatient;
 
     public Long getId() {
