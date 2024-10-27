@@ -29,27 +29,14 @@ public class EmailServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String dni = req.getParameter("dni");
 
-        // Validación del DNI
-        if (dni == null || dni.isEmpty()) {
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "DNI is required.");
-            return;
+        String email = patientDAO.getEmail(dni);
+        String names = patientDAO.getNames(dni);
+        LOGGER.log(Level.INFO, "Correo: {0}, Nombres: {1}", new Object[]{email, names}); // Mejora la legibilidad
+        try {
+            emailService.sendEmail(email, names);
+        } catch (EmailException e) {
+            throw new RuntimeException(e);
         }
-
-        // Verificación del DNI en la base de datos
-        boolean exists = patientDAO.verifyDni(dni);
-        if (exists) {
-            try {
-                String email = patientDAO.getEmail(dni);
-                String names = patientDAO.getNames(dni);
-                LOGGER.log(Level.INFO, "Correo: " + email + ", Nombres: " + names);
-                emailService.sendEmail(email, names);
-                resp.setStatus(HttpServletResponse.SC_OK);
-            } catch (EmailException e) {
-                LOGGER.log(Level.SEVERE, "Error sending email to: " + dni, e);
-                resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error sending email.");
-            }
-        } else {
-            resp.sendRedirect("/error/404.jsp");
-        }
+        resp.setStatus(HttpServletResponse.SC_OK);
     }
 }
