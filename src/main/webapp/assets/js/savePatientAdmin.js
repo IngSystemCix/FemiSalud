@@ -4,10 +4,12 @@ function guardarDatos() {
     const nombre = document.getElementById('nombre').value;
     const apellidoPaterno = document.getElementById('apellido-paterno').value;
     const apellidoMaterno = document.getElementById('apellido-materno').value;
+    const telefono = document.getElementById('telefono').value;
     const email = document.getElementById('email').value;
+    const bebeGestion = document.getElementById('bebe-gestion').value;
 
     // Validar que los campos no estén vacíos
-    if (!dni || !nombre || !apellidoPaterno || !apellidoMaterno || !email) {
+    if (!dni || !nombre || !apellidoPaterno || !apellidoMaterno || !telefono || !email) {
         alert('Por favor, completa todos los campos.');
         return;
     }
@@ -19,7 +21,9 @@ function guardarDatos() {
                     <td class="py-2 px-4 border-b">${nombre}</td>
                     <td class="py-2 px-4 border-b">${apellidoPaterno}</td>
                     <td class="py-2 px-4 border-b">${apellidoMaterno}</td>
-                    <td class="py-2 px-4 border-b">${email}</td> <!-- Agregar correo a la fila -->
+                    <td class="py-2 px-4 border-b">${telefono}</td>
+                    <td class="py-2 px-4 border-b">${email}</td>
+                    <td class="py-2 px-4 border-b">${bebeGestion}</td>
                 </tr>
             `;
 
@@ -31,6 +35,9 @@ function guardarDatos() {
     document.getElementById('nombre').value = '';
     document.getElementById('apellido-paterno').value = '';
     document.getElementById('apellido-materno').value = '';
+    document.getElementById('telefono').value = '';
     document.getElementById('email').value = '';
-    document.getElementById('fecha-nacimiento').value = '';
+    document.getElementById('bebe-gestion').value = 'UNICO';
+
+    alert('Datos guardados correctamente.');
 }
