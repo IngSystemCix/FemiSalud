@@ -56,6 +56,11 @@
     <url-pattern>/dashboard_admin</url-pattern>
   </servlet-mapping>
 
+  <servlet-mapping>
+    <servlet-name>RoutesPages</servlet-name>
+    <url-pattern>/notes_clinical</url-pattern>
+  </servlet-mapping>
+
   <error-page>
     <error-code>403</error-code>
     <location>/error/403.jsp</location>

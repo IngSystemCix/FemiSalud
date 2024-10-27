@@ -41,6 +41,9 @@ public class RoutesPages extends HttpServlet {
             case "/dashboard_admin":
                 req.getRequestDispatcher("/dashboardAdmin.jsp").forward(req, resp);
                 break;
+            case "/notes_clinical":
+                req.getRequestDispatcher("/clinicalNoteAdmin.jsp").forward(req, resp);
+                break;
             default:
                 req.getRequestDispatcher("/404.jsp").forward(req, resp);
                 break;
