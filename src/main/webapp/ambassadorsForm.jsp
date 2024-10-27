@@ -18,7 +18,7 @@
 </div>
 <div class="flex flex-col ml-10 justify-center items-center gap-6 w-full min-h-screen bg-white p-6 overflow-hidden">
     <h1 class="text-3xl font-bold text-center text-black mb-2">Bienvenida, embajadora de la prevención</h1>
-    <h2 class="text-center text-blue-600 text-sm mb-8">Ayuda a tus amigas a cuidar su salud y recibe beneficios exclusivos.</h2>
+    <h2 class="text-center text-black text-sm mb-8">Ayuda a tus amigas a cuidar su salud y recibe beneficios exclusivos.</h2>
 
     <!-- Contenedor de formularios -->
     <div id="form-container" class="w-full h-auto flex overflow-x-auto overflow-hidden gap-3 pb-4">
@@ -56,8 +56,8 @@
     <!-- Botones de acción -->
     <div class="flex justify-center mt-8 space-x-4">
         <button class="bg-red-600 text-white px-6 py-2 rounded-lg">Salir del formulario</button>
-        <button class="bg-blue-600 text-white px-6 py-2 rounded-lg">Guardar datos</button>
-        <button id="add-invitee-btn" class="bg-green-600 text-white px-6 py-2 rounded-lg">Agregar invitado</button>
+        <button id="add-invitee-btn" class="bg-femisalud-900 text-white px-6 py-2 rounded-lg">Agregar invitada</button>
+        <button class="bg-verde-400 text-white px-6 py-2 rounded-lg">Guardar datos</button>
     </div>
 </div>
 </div>
