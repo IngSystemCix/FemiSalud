@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
 
             int rowIdx = 1;
 
-            ImmutableList<Object[]> data = userDao.generateReport(name);
+            ImmutableList<Object[]> data = userDao.generateReportUltrasound(name);
 
             for (Object[] obj : data) {
                 row = sheet.createRow(rowIdx++);
