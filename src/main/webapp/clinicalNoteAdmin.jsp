@@ -5,6 +5,7 @@
   Time: 14:43
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="es">
@@ -60,8 +61,9 @@
                 <div class="bg-white p-4 rounded-lg shadow-md mb-4 flex justify-between items-center">
                     <select class="ml-4 border border-gray-300 rounded-md p-2">
                         <!-- Opciones de pacientes -->
-                        <option>Briggite Martínez Vidaurre</option>
-                        <option>Otro Paciente</option>
+                        <c:forEach var="patient" items="${patients}">
+                            <option value="${patient}">${patient}</option> <!-- Aquí, 'patient' es un String -->
+                        </c:forEach>
                     </select>
                     <button class="bg-femisalud-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                         Descargar

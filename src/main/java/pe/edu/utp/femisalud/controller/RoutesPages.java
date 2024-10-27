@@ -1,13 +1,20 @@
 package pe.edu.utp.femisalud.controller;
 
+import com.google.common.collect.ImmutableList;
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import pe.edu.utp.femisalud.dao.PatientDAO;
 
 import java.io.IOException;
+import java.util.List;
 
 public class RoutesPages extends HttpServlet {
+    @Inject
+    private PatientDAO patientDAO;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String path = req.getServletPath();
@@ -15,38 +22,53 @@ public class RoutesPages extends HttpServlet {
         switch (path) {
             case "/":
             case "/login":
-                req.getRequestDispatcher("/index.jsp").forward(req, resp);
+                forwardToPage(req, resp, "/index.jsp");
                 break;
             case "/home":
-                req.getRequestDispatcher("/home.jsp").forward(req, resp);
+                forwardToPage(req, resp, "/home.jsp");
                 break;
             case "/profile":
-                req.getRequestDispatcher("/editProfile.jsp").forward(req, resp);
+                forwardToPage(req, resp, "/editProfile.jsp");
                 break;
             case "/ambassador":
-                req.getRequestDispatcher("/ambassadorsForm.jsp").forward(req, resp);
+                forwardToPage(req, resp, "/ambassadorsForm.jsp");
                 break;
             case "/message":
-                req.getRequestDispatcher("/message.jsp").forward(req, resp);
+                forwardToPage(req, resp, "/message.jsp");
                 break;
             case "/ultrasound":
-                req.getRequestDispatcher("/ultrasound.jsp").forward(req, resp);
+                forwardToPage(req, resp, "/ultrasound.jsp");
                 break;
             case "/baby":
-                req.getRequestDispatcher("/baby.jsp").forward(req, resp);
+                forwardToPage(req, resp, "/baby.jsp");
                 break;
             case "/attention_form":
-                req.getRequestDispatcher("/attentionForm.jsp").forward(req, resp);
+                forwardToPage(req, resp, "/attentionForm.jsp");
                 break;
             case "/dashboard_admin":
-                req.getRequestDispatcher("/dashboardAdmin.jsp").forward(req, resp);
+                forwardToPage(req, resp, "/dashboardAdmin.jsp");
                 break;
             case "/notes_clinical":
-                req.getRequestDispatcher("/clinicalNoteAdmin.jsp").forward(req, resp);
+                handleClinicalNotes(req, resp);
                 break;
             default:
-                req.getRequestDispatcher("/404.jsp").forward(req, resp);
+                forwardToPage(req, resp, "/404.jsp");
                 break;
+        }
+    }
+
+    private void forwardToPage(HttpServletRequest req, HttpServletResponse resp, String page) throws ServletException, IOException {
+        req.getRequestDispatcher(page).forward(req, resp);
+    }
+
+    private void handleClinicalNotes(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            List<String> patients = patientDAO.getAllPatients();
+            req.setAttribute("patients", patients);
+            forwardToPage(req, resp, "/clinicalNoteAdmin.jsp");
+        } catch (Exception e) {
+            req.setAttribute("errorMessage", "No se pudieron cargar los pacientes.");
+            forwardToPage(req, resp, "/error.jsp");
         }
     }
 }
