@@ -21,10 +21,12 @@ public class HibernateUtil {
     @PostConstruct
     public void init() {
         try {
+            // Asegúrate de que el contexto de persistencia esté configurado correctamente
             entityManagerFactory = Persistence.createEntityManagerFactory("femisalud_db", getProperties());
+            LOGGER.info("EntityManagerFactory initialized successfully."); // Log para confirmar la inicialización
         } catch (Exception e) {
-            // Log the exception instead of printing the stack trace
-            LOGGER.error("Error initializing EntityManagerFactory", e);
+            LOGGER.error("Error initializing EntityManagerFactory", e); // Mensaje de error mejorado
+            throw new IllegalStateException("EntityManagerFactory initialization failed.", e); // Lanzar una excepción específica
         }
     }
 
@@ -37,25 +39,39 @@ public class HibernateUtil {
 
     private Properties getProperties() {
         Properties properties = new Properties();
+
+        String host = dotenv.get("HOST_DB");
+        String port = dotenv.get("PORT_DB");
+        String dbName = dotenv.get("DB_NAME");
+        String user = dotenv.get("USER_DB");
+        String password = dotenv.get("PASS_DB");
+
+        if (host == null || port == null || dbName == null || user == null || password == null) {
+            throw new IllegalStateException("One or more required environment variables are missing.");
+        }
+
         properties.put("jakarta.persistence.jdbc.url",
-                "jdbc:mariadb://" + dotenv.get("HOST_DB") + ":" + dotenv.get("PORT_DB") + "/" + dotenv.get("DB_NAME"));
-        properties.put("jakarta.persistence.jdbc.user", dotenv.get("USER_DB"));
-        properties.put("jakarta.persistence.jdbc.password", dotenv.get("PASS_DB"));
+                "jdbc:mariadb://" + host + ":" + port + "/" + dbName);
+        properties.put("jakarta.persistence.jdbc.user", user);
+        properties.put("jakarta.persistence.jdbc.password", password);
         properties.put("jakarta.persistence.jdbc.driver", "org.mariadb.jdbc.Driver");
-        properties.put("jakarta.persistence.schema-generation.database.action", "update");
-        properties.put("hibernate.dialect", "org.hibernate.dialect.MariaDBDialect"); // Corrección del nombre de la propiedad
+        properties.put("hibernate.dialect", "org.hibernate.dialect.MariaDBDialect");
+
+        properties.put("hibernate.hbm2ddl.auto", "update");
+
         return properties;
     }
 
     @PreDestroy
     public void cleanUp() {
-        if (entityManagerFactory != null) {
+        if (entityManagerFactory != null && entityManagerFactory.isOpen()) {
             entityManagerFactory.close();
             LOGGER.info("EntityManagerFactory closed successfully.");
+        } else {
+            LOGGER.warn("EntityManagerFactory was null or already closed on cleanup.");
         }
     }
 
-    // Método para establecer un EntityManagerFactory simulado en las pruebas
     public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
         this.entityManagerFactory = entityManagerFactory;
     }

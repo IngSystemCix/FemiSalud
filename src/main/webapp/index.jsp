@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="es">
@@ -7,7 +6,7 @@
   <title>FemiSalud</title>
 </head>
 <body class="flex justify-center items-center w-full h-screen bg-femisalud-200">
-<form action="verify_dni" method="post" class="w-full h-full flex flex-col justify-center items-start p-6 gap-6">
+<form id="loginForm" action="verify_dni" method="post" class="w-full h-full flex flex-col justify-center items-start p-6 gap-6">
   <div class="w-full text-center">
     <h1 class="text-8xl text-center font-semibold mb-10 text-femisalud-600">FemiSalud</h1>
     <h2 class="text-4xl font-bold">Inicio de sesión</h2>

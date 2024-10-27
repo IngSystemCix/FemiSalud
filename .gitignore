@@ -41,4 +41,4 @@ build/
 /src/main/webapp/node_modules/
 
 ### Enviroment ###
-.env
+src/main/resources/.env

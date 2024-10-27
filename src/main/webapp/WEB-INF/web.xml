@@ -11,16 +11,6 @@
     <servlet-class>pe.edu.utp.femisalud.controller.RoutesPages</servlet-class>
   </servlet>
 
-  <servlet>
-    <servlet-name>EmailServlet</servlet-name>
-    <servlet-class>pe.edu.utp.femisalud.controller.EmailServlet</servlet-class>
-  </servlet>
-
-  <servlet-mapping>
-    <servlet-name>EmailServlet</servlet-name>
-    <url-pattern>/verify_dni</url-pattern>
-  </servlet-mapping>
-
   <servlet-mapping>
     <servlet-name>RoutesPages</servlet-name>
     <url-pattern>/home</url-pattern>

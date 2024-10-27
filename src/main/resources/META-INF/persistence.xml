@@ -23,12 +23,11 @@
     <class>pe.edu.utp.femisalud.model.Ultrasound</class>
     <class>pe.edu.utp.femisalud.model.UltrasoundView</class>
     <properties>
-      <property name="hibernate.connection.driver_class" value="org.mariadb.jdbc.Driver"/>
+      <property name="jakarta.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
+      <property name="jakarta.persistence.jdbc.url" value="jdbc:mariadb://${env.HOST_DB}:${env.PORT_DB}/${env.DB_NAME}"/>
+      <property name="jakarta.persistence.jdbc.user" value="${env.USER_DB}"/>
+      <property name="jakarta.persistence.jdbc.password" value="${env.PASS_DB}"/>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect"/>
-      <property name="hibernate.hbm2ddl.auto" value="update"/>
-      <property name="hibernate.show_sql" value="true"/>
-      <property name="hibernate.format_sql" value="true"/>
-      <property name="hibernate.use_sql_comments" value="true"/>
     </properties>
   </persistence-unit>
 </persistence>
