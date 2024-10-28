@@ -14,19 +14,20 @@ public class EmailService {
         HtmlEmail email = new HtmlEmail();
         email.setHostName("smtp.gmail.com");
         email.setSmtpPort(587);
-        email.setAuthenticator(new DefaultAuthenticator(dotenv.get("EMAIL"), dotenv.get("APP_CODE")));
         email.setStartTLSEnabled(true);
+        email.setAuthenticator(new DefaultAuthenticator(dotenv.get("EMAIL"), dotenv.get("APP_CODE")));
+        email.setContentType("text/html; charset=UTF-8");
+        email.setCharset("UTF-8");
         email.setFrom(dotenv.get("EMAIL"));
         email.addTo(recipientEmail);
         email.setSubject("Código de verificación");
 
         String htmlMessage = createHtmlMessage(name, verificationCode());
 
-        email.setHtmlMsg(htmlMessage);
+        email.setMsg(htmlMessage);
         email.send();
     }
 
-    // Método para crear el mensaje HTML
     private String createHtmlMessage(String name, String code) {
         return "<!DOCTYPE html>"
                 + "<html lang=\"es\">"
@@ -56,6 +57,6 @@ public class EmailService {
     }
 
     private String verificationCode() {
-        return String.valueOf((int) (Math.random() * 9000) + 1000);
+        return String.valueOf((int) (Math.random() * 900000) + 100000);
     }
 }

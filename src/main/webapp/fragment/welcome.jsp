@@ -3,7 +3,7 @@
   User: RAMOS MARRUFO
   Date: 13/10/2024
   Time: 04:16
-  To change this template use File | Settings | File Templates.
+  Este es un archivo JSP para la página de bienvenida de FemiSalud.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="relative bg-gradient-to-r from-purple-200 to-transparent rounded-lg p-6 flex w-full">
@@ -19,6 +19,7 @@
     </div>
 
     <img src="${pageContext.request.contextPath}/assets/img/mom_welcome.png"
-         alt="Imagen de bienvenida"
-         class="h-44 absolute bottom-0 right-0">
+         alt="Ilustración de bienvenida para madres en FemiSalud"
+         title="Bienvenida a FemiSalud"
+         class="h-64 absolute bottom-0 -right-32">
 </div>

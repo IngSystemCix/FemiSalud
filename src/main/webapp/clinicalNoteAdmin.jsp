@@ -58,10 +58,10 @@
                     <select id="patientSelect" class="ml-4 border border-gray-300 rounded-md p-2">
                         <!-- Opciones de pacientes -->
                         <c:forEach var="patient" items="${patients}">
-                            <option value="${patient[1]}">${patient[0]}</option> <!-- Aquí, 'patient[1]' es el DNI y 'patient[0]' es el nombre -->
+                            <option value="${patient[1]}">${patient[0]}</option> <!-- 'patient[1]' es el DNI -->
                         </c:forEach>
                     </select>
-                    <button id="exportar" class="bg-femisalud-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4">
+                    <button id="exportar" class="bg-femisalud-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4" onclick="exportClinicalNotes()">
                         Exportar
                     </button>
                 </div>
@@ -97,5 +97,6 @@
 <script src="${pageContext.request.contextPath}/assets/js/sidebar.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/filterUltrasound.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/filterClinicalNotes.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/exportExcel.js"></script>
 </body>
 </html>

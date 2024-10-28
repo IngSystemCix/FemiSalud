@@ -12,7 +12,7 @@ import pe.edu.utp.femisalud.dao.UltrasoundDAO;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/getUltrasounds") // Solo la ruta base sin parámetros
+@WebServlet("/getUltrasounds")
 public class UltrasoundServlet extends HttpServlet {
     @Inject
     private UltrasoundDAO ultrasoundDAO;

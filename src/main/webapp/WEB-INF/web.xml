@@ -80,7 +80,27 @@
     <servlet-name>ClinicalNotesServlet</servlet-name>
     <url-pattern>/clinical_notes</url-pattern>
   </servlet-mapping>
-  
+
+  <servlet>
+    <servlet-name>ExportClinicalNotesServlet</servlet-name>
+    <servlet-class>pe.edu.utp.femisalud.controller.ExportClinicalNotesServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ExportClinicalNotesServlet</servlet-name>
+    <url-pattern>/export_clinical_notes</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>EmailServlet</servlet-name>
+    <servlet-class>pe.edu.utp.femisalud.controller.EmailServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>EmailServlet</servlet-name>
+    <url-pattern>/verify_dni</url-pattern>
+  </servlet-mapping>
+
   <error-page>
     <error-code>403</error-code>
     <location>/error/403.jsp</location>

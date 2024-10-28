@@ -30,4 +30,23 @@ public class ApachePOIUtil {
         }
         cell.setCellStyle(cellStyle);
     }
+
+    public static void createCell(Workbook workbook, Row row, int columnIndex, String value) {
+        Cell cell = row.createCell(columnIndex);
+        cell.setCellValue(value); // Establece el valor de la celda
+
+        // Aplicar estilo si es necesario
+        CellStyle cellStyle = workbook.createCellStyle();
+        Font font = workbook.createFont();
+
+        // Si quieres un estilo específico para encabezados, puedes usar:
+        if (row.getRowNum() == 0) { // Si es la fila de encabezado
+            font.setBold(true);
+            cellStyle.setFont(font);
+        }
+
+        // Puedes agregar más estilos aquí (alineación, color de fondo, etc.)
+
+        cell.setCellStyle(cellStyle); // Aplica el estilo a la celda
+    }
 }

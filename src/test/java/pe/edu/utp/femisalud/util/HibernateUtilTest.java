@@ -4,10 +4,11 @@ import jakarta.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class HibernateUtilTest {
 
@@ -18,30 +19,23 @@ public class HibernateUtilTest {
 
     @BeforeEach
     public void setUp() {
-        // Inicializa los mocks
         MockitoAnnotations.openMocks(this);
-
-        // Crea la instancia de HibernateUtil y configura el mock de EntityManagerFactory
         hibernateUtil = new HibernateUtil();
-        hibernateUtil.setEntityManagerFactory(entityManagerFactory); // Inyecta el mock
+        hibernateUtil.setEntityManagerFactory(entityManagerFactory);
     }
 
     @Test
     public void testCleanUp() {
-        // Llama explícitamente a cleanUp
+        when(entityManagerFactory.isOpen()).thenReturn(true);
+
         hibernateUtil.cleanUp();
 
-        // Verifica que el método close() se haya llamado en entityManagerFactory
-        Mockito.verify(entityManagerFactory).close();
+        verify(entityManagerFactory).close();
     }
 
     @Test
     public void testGetEntityManagerWhenNotInitialized() {
-        // Simula que no hay un EntityManagerFactory y llama a cleanUp
-        hibernateUtil.cleanUp();
         hibernateUtil.setEntityManagerFactory(null);
-
-        // Verifica que getEntityManager() lance IllegalStateException si no está inicializado
         assertThrows(IllegalStateException.class, () -> {
             hibernateUtil.getEntityManager();
         });

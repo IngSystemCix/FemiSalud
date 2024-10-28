@@ -38,7 +38,7 @@ public class PatientDAOImpl implements PatientDAO {
         String email = null; // Variable para almacenar el email
 
         try {
-            email = em.createQuery("SELECT p.email FROM Patient p WHERE p.dni = :p_dni", String.class)
+            email = em.createQuery("SELECT sf_get_patient_email(:p_dni)", String.class)
                     .setParameter("p_dni", dni)
                     .getSingleResult();
         } finally {
@@ -55,7 +55,7 @@ public class PatientDAOImpl implements PatientDAO {
         String fullName = null;
 
         try {
-            fullName = em.createQuery("SELECT p.fullName FROM Patient p WHERE p.dni = :p_dni", String.class)
+            fullName = em.createQuery("SELECT sf_get_patient_full_name(:p_dni)", String.class)
                     .setParameter("p_dni", dni)
                     .getSingleResult();
         } finally {
