@@ -10,6 +10,8 @@
 <html lang="es">
 <head>
     <jsp:include page="fragment/head.jsp"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <title>FemiSalud</title>
 </head>
 <body class="flex w-full h-screen bg-femisalud-300">
@@ -28,8 +30,11 @@
             </p>
         </div>
         <div class="w-full h-full relative">
-            <div class="absolute -top-2 left-0 h-6 w-24 bg-femisalud-600 rounded-t-md"></div>
+            <div class="-top-2 left-0 h-6 w-24 bg-femisalud-600 rounded-t-md"></div>
             <div class="w-full h-full bg-femisalud-600 rounded-md shadow-md"></div>
+            <div class="absolute w-auto">
+                <jsp:include page="fragment/folders_ultrasound.jsp"/>
+            </div>
         </div>
         <div class="flex justify-center mt-8 space-x-4">
             <button onclick="window.location.href='attentionForm.jsp'" class="bg-femisalud-900 text-white px-6 py-2 rounded-lg">Calificar atención</button>

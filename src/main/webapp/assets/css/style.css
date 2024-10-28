@@ -11679,6 +11679,10 @@ html, body {
   margin-right:0.5rem
 }
 
+.mr-4{
+  margin-right:1rem
+}
+
 .mt-1{
   margin-top:0.25rem
 }
@@ -11701,10 +11705,6 @@ html, body {
 
 .mt-8{
   margin-top:2rem
-}
-
-.mr-4{
-  margin-right:1rem
 }
 
 .block{
@@ -12328,11 +12328,6 @@ html, body {
 .bg-femisalud-400{
   --tw-bg-opacity:1;
   background-color:rgb(145 190 225 / var(--tw-bg-opacity))
-}
-
-.bg-femisalud-500{
-  --tw-bg-opacity:1;
-  background-color:rgb(66 171 238 / var(--tw-bg-opacity))
 }
 
 .bg-femisalud-600{
