@@ -2,7 +2,6 @@
 <web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
-
          version="6.0">
 
   <display-name>femisalud</display-name>
@@ -62,6 +61,16 @@
     <url-pattern>/notes_clinical</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>UltrasoundServlet</servlet-name>
+    <servlet-class>pe.edu.utp.femisalud.controller.UltrasoundServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>UltrasoundServlet</servlet-name>
+    <url-pattern>/getUltrasounds</url-pattern>
+  </servlet-mapping>
+  
   <error-page>
     <error-code>403</error-code>
     <location>/error/403.jsp</location>

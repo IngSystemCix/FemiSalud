@@ -25,22 +25,20 @@
         <!-- Contenedor principal -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <!-- Formulario de notas clínicas -->
-            <div class="bg-femisalud-200 p-6 rounded-lg shadow-md max-h-screen overflow-y-auto">
+            <form action="" method="post" class="bg-femisalud-200 p-6 rounded-lg shadow-md max-h-screen overflow-y-auto">
                 <h4 class="text-xl font-semibold mb-2 text-center">Registro de notas clínicas</h4>
                 <p class="text-gray-600 text-start mb-6">Por favor, completa el formulario de notas clínicas de la ecografía realizada.</p>
+
                 <div class="mb-4">
                     <label for="dni-paciente" class="block text-sm font-medium text-gray-700">DNI de la paciente:</label>
-                    <input type="text" id="dni-paciente" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <input type="text" id="dni-paciente" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" maxlength="8" />
                 </div>
 
                 <div class="mb-4">
                     <label for="id-ecografia" class="block text-sm font-medium text-gray-700">ID de la ecografía:</label>
-                    <input type="text" id="id-ecografia" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                </div>
-
-                <div class="mb-4">
-                    <label for="fecha-hora" class="block text-sm font-medium text-gray-700">Fecha y hora de la ecografía:</label>
-                    <input type="datetime-local" id="fecha-hora" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <select id="id-ecografia" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option value="" disabled selected>Selecciona una ecografía</option>
+                    </select>
                 </div>
 
                 <div class="mb-4">
@@ -51,7 +49,7 @@
                 <button class="bg-verde-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center">
                     Guardar datos
                 </button>
-            </div>
+            </form>
 
             <!-- Tabla de notas clínicas registradas -->
             <div class="flex flex-col">
@@ -117,5 +115,6 @@
 </div>
 <!-- Scripts -->
 <script src="${pageContext.request.contextPath}/assets/js/sidebar.js" defer></script>
+<script src="${pageContext.request.contextPath}/assets/js/filterClinalNotes.js" defer></script>
 </body>
 </html>

@@ -1,13 +1,11 @@
 package pe.edu.utp.femisalud.dao;
 
-import com.google.common.collect.ImmutableList;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import pe.edu.utp.femisalud.util.HibernateUtil;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -93,7 +91,5 @@ public class PatientDAOImpl implements PatientDAO {
         }
         return patients;
     }
-
-
 
 }
