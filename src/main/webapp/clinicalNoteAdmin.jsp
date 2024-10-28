@@ -53,25 +53,22 @@
 
             <!-- Tabla de notas clínicas registradas -->
             <div class="flex flex-col">
-
-
                 <!-- Nombre paciente -->
                 <div class="bg-white p-4 rounded-lg shadow-md mb-4 flex justify-between items-center">
-                    <select class="ml-4 border border-gray-300 rounded-md p-2">
+                    <select id="patientSelect" class="ml-4 border border-gray-300 rounded-md p-2">
                         <!-- Opciones de pacientes -->
                         <c:forEach var="patient" items="${patients}">
-                            <option value="${patient}">${patient}</option> <!-- Aquí, 'patient' es un String -->
+                            <option value="${patient[1]}">${patient[0]}</option> <!-- Aquí, 'patient[1]' es el DNI y 'patient[0]' es el nombre -->
                         </c:forEach>
                     </select>
-                    <button class="bg-femisalud-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                        Descargar
+                    <button id="exportar" class="bg-femisalud-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4">
+                        Exportar
                     </button>
                 </div>
 
                 <!-- Tabla -->
                 <div class="bg-white p-6 rounded-lg shadow-md">
                     <h2 class="text-lg font-semibold text-center mb-4">Notas clínicas registradas</h2>
-
                     <div class="overflow-x-auto">
                         <table class="min-w-full bg-white border border-gray-200">
                             <thead class="bg-femisalud-900 text-white">
@@ -82,25 +79,8 @@
                                 <th class="py-2 px-4 border-b">Nota clínica</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr class="bg-blue-50">
-                                <td class="py-2 px-4 border-b">87991810</td>
-                                <td class="py-2 px-4 border-b">1</td>
-                                <td class="py-2 px-4 border-b">22/06/2024 11:35</td>
-                                <td class="py-2 px-4 border-b">Sin observación</td>
-                            </tr>
-                            <tr class="bg-white">
-                                <td class="py-2 px-4 border-b">87991810</td>
-                                <td class="py-2 px-4 border-b">2</td>
-                                <td class="py-2 px-4 border-b">22/07/2024 09:50</td>
-                                <td class="py-2 px-4 border-b">Sin observación</td>
-                            </tr>
-                            <tr class="bg-blue-50">
-                                <td class="py-2 px-4 border-b">87991810</td>
-                                <td class="py-2 px-4 border-b">3</td>
-                                <td class="py-2 px-4 border-b">22/08/2024 10:10</td>
-                                <td class="py-2 px-4 border-b">Sin observación</td>
-                            </tr>
+                            <tbody id="clinicalNotesBody">
+                            <!-- Las notas clínicas se llenarán aquí dinámicamente -->
                             </tbody>
                         </table>
                     </div>
@@ -114,7 +94,8 @@
     </div>
 </div>
 <!-- Scripts -->
-<script src="${pageContext.request.contextPath}/assets/js/sidebar.js" defer></script>
-<script src="${pageContext.request.contextPath}/assets/js/filterClinalNotes.js" defer></script>
+<script src="${pageContext.request.contextPath}/assets/js/sidebar.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/filterUltrasound.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/filterClinicalNotes.js"></script>
 </body>
 </html>

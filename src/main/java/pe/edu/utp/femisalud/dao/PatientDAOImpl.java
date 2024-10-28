@@ -67,22 +67,16 @@ public class PatientDAOImpl implements PatientDAO {
     }
 
     @Override
-    public List<String> getAllPatients() {
+    public List<Object[]> getAllPatients() {
         EntityManager em = hibernateUtil.getEntityManager();
-        List<String> patients;
+        List<Object[]> patients = new ArrayList<>();
         try {
             // Ejecuta el procedimiento almacenado y obtiene el resultado
-            // Asegúrate de que el resultado es del tipo correcto (String)
-            List<Object> resultList = em.createNativeQuery("CALL usp_get_all_patient()").getResultList();
-
-            // Convierte el resultado a List<String> si es necesario
-            patients = resultList.stream()
-                    .map(result -> (String) result) // Asegúrate de que cada resultado es un String
-                    .collect(Collectors.toList());
+            List<Object[]> resultList = em.createNativeQuery("CALL usp_get_all_patient()").getResultList();
+            patients = resultList;
         } catch (Exception e) {
             // Manejo de excepciones
-            e.printStackTrace(); // O usar un logger para registrar el error
-            patients = new ArrayList<>(); // Devuelve una lista vacía en caso de error
+            e.printStackTrace(); // Considera usar un logger para registrar el error
         } finally {
             // Asegúrate de cerrar el EntityManager
             if (em != null && em.isOpen()) {

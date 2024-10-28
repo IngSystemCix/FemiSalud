@@ -71,6 +71,16 @@
     <url-pattern>/getUltrasounds</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>ClinicalNotesServlet</servlet-name>
+    <servlet-class>pe.edu.utp.femisalud.controller.ClinicalNotesServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>ClinicalNotesServlet</servlet-name>
+    <url-pattern>/clinical_notes</url-pattern>
+  </servlet-mapping>
+  
   <error-page>
     <error-code>403</error-code>
     <location>/error/403.jsp</location>

@@ -4,4 +4,5 @@ import java.util.List;
 
 public interface UltrasoundDAO {
     List<Long> getUltrasoundByPatient(String dni);
+    List<Object[]> getClinicalNotesByPatient(String dni);
 }

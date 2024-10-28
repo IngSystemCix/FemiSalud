@@ -38,4 +38,26 @@ public class UltrasoundDAOImpl implements UltrasoundDAO{
         return ultrasounds != null ? ultrasounds : Collections.emptyList();
     }
 
+    @Override
+    public List<Object[]> getClinicalNotesByPatient(String dni) {
+        EntityManager em = null;
+        List<Object[]> clinicalNotes = new ArrayList<>();
+        try {
+            em = hibernateUtil.getEntityManager();
+            clinicalNotes = em.createNativeQuery("CALL usp_get_clinical_notes(:input_dni)")
+                    .setParameter("input_dni", dni)
+                    .getResultList();
+        } catch (Exception e) {
+            // Manejo de excepciones
+            LOGGER.error("Error al ejecutar el procedimiento almacenado usp_get_clinical_notes", e);
+        } finally {
+            // Asegúrate de cerrar el EntityManager
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
+        }
+        return clinicalNotes; // No necesitas verificar si es null
+    }
+
+
 }

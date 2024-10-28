@@ -63,7 +63,7 @@ public class RoutesPages extends HttpServlet {
 
     private void handleClinicalNotes(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            List<String> patients = patientDAO.getAllPatients();
+            List<Object[]> patients = patientDAO.getAllPatients();
             req.setAttribute("patients", patients);
             forwardToPage(req, resp, "/clinicalNoteAdmin.jsp");
         } catch (Exception e) {

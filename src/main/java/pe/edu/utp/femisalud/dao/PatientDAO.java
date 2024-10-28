@@ -6,5 +6,5 @@ public interface PatientDAO {
     boolean verifyDni(String dni);
     String getEmail(String dni);
     String getNames(String dni);
-    List<String> getAllPatients();
+    List<Object[]> getAllPatients();
 }
