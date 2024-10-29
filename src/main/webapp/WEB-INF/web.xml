@@ -110,6 +110,26 @@
     <servlet-name>AddNotesClinicalServlet</servlet-name>
     <url-pattern>/add_notes_clinical</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>pe.edu.utp.femisalud.controller.LogoutServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>UpdateProfileServlet</servlet-name>
+    <servlet-class>pe.edu.utp.femisalud.controller.UpdateProfileServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>UpdateProfileServlet</servlet-name>
+    <url-pattern>/update_profile</url-pattern>
+  </servlet-mapping>
   
   <error-page>
     <error-code>403</error-code>

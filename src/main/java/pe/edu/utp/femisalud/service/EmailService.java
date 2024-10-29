@@ -5,7 +5,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
-import java.security.SecureRandom;
 import java.time.Year;
 
 @ApplicationScoped
@@ -15,9 +14,8 @@ public class EmailService {
     private static final String APP_CODE = dotenv.get("APP_CODE");
     private static final String HOST_NAME = "smtp.gmail.com";
     private static final int SMTP_PORT = 587;
-    private static final SecureRandom secureRandom = new SecureRandom();
 
-    public void sendEmail(String recipientEmail, String name) throws EmailException {
+    public void sendEmail(String recipientEmail, String name, String code) throws EmailException {
         HtmlEmail email = new HtmlEmail();
 
         email.setHostName(HOST_NAME);
@@ -30,7 +28,7 @@ public class EmailService {
         email.addTo(recipientEmail);
         email.setSubject("Código de verificación");
 
-        String htmlMessage = createHtmlMessage(name, generateVerificationCode());
+        String htmlMessage = createHtmlMessage(name, code);
         email.setMsg(htmlMessage);
         email.send();
     }
@@ -74,11 +72,6 @@ public class EmailService {
                 + "  </table>"
                 + "</body>"
                 + "</html>";
-    }
-
-    private String generateVerificationCode() {
-        int code = secureRandom.nextInt(900000) + 100000;
-        return String.valueOf(code);
     }
 
     private static int getYearNow() {

@@ -6,6 +6,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import pe.edu.utp.femisalud.dao.PatientDAO;
 
 import java.io.IOException;
@@ -28,6 +29,7 @@ public class RoutesPages extends HttpServlet {
                 forwardToPage(req, resp, "/home.jsp");
                 break;
             case "/profile":
+                handleGetDataPatient(req, resp);
                 forwardToPage(req, resp, "/editProfile.jsp");
                 break;
             case "/ambassador":
@@ -68,7 +70,20 @@ public class RoutesPages extends HttpServlet {
             forwardToPage(req, resp, "/clinicalNoteAdmin.jsp");
         } catch (Exception e) {
             req.setAttribute("errorMessage", "No se pudieron cargar los pacientes.");
-            forwardToPage(req, resp, "/error.jsp");
+            forwardToPage(req, resp, "/404.jsp");
+        }
+    }
+
+    private void handleGetDataPatient(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        try {
+            HttpSession session = req.getSession();
+            String dni = (String) session.getAttribute("dni");
+            List<String> data = patientDAO.getData(dni);
+            req.setAttribute("data_patient", data);
+            forwardToPage(req, resp, "/editProfile.jsp");
+        } catch (Exception e) {
+            req.setAttribute("errorMessage", "No se pudieron cargar los datos del paciente.");
+            forwardToPage(req, resp, "/404.jsp");
         }
     }
 }

@@ -86,4 +86,76 @@ public class PatientDAOImpl implements PatientDAO {
         return patients;
     }
 
+    @Override
+    public List<String> getData(String dni) {
+        EntityManager em = hibernateUtil.getEntityManager();
+        List<String> data = new ArrayList<>();
+        try {
+            // Ejecuta el procedimiento almacenado y obtiene el resultado
+            List<Object[]> resultList = em.createNativeQuery("CALL usp_get_data_patient(:p_dni)")
+                    .setParameter("p_dni", dni)
+                    .getResultList();
+
+            // Verificar si se encontraron resultados
+            if (resultList.isEmpty()) {
+                data.add("No se encontraron datos para el DNI proporcionado.");
+                return data; // Devolver la lista con el mensaje
+            }
+
+            // Procesa el resultado del procedimiento almacenado
+            for (Object[] objects : resultList) {
+                // Asegúrate de que el resultado tiene al menos 4 columnas
+                if (objects.length >= 4) {
+                    // Agregar los datos a la lista
+                    data.add(objects[0] != null ? objects[0].toString() : "N/A"); // Nombre
+                    data.add(objects[2] != null ? objects[2].toString() : "N/A"); // Email
+                    data.add(objects[3] != null ? objects[3].toString() : "N/A"); // Otro dato
+                    data.add(objects[1] != null ? objects[1].toString() : "N/A"); // Teléfono
+                } else {
+                    // Manejo en caso de datos incompletos
+                    data.add("Datos incompletos");
+                }
+            }
+        } catch (Exception e) {
+            // Manejo de excepciones
+            e.printStackTrace(); // Considera usar un logger para registrar el error
+        } finally {
+            // Asegúrate de cerrar el EntityManager
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
+        }
+        return data; // Devolvemos la lista de datos como cadenas individuales
+    }
+
+    @Override
+    public void updateData(String dni, String phone, String email) {
+        EntityManager em = hibernateUtil.getEntityManager();
+        try {
+            // Inicia una transacción
+            em.getTransaction().begin();
+            // Ejecuta el procedimiento almacenado
+            em.createNativeQuery("CALL usp_update_patient_data(:p_dni, :p_phone, :p_email)")
+                    .setParameter("p_dni", dni)
+                    .setParameter("p_phone", phone)
+                    .setParameter("p_email", email)
+                    .executeUpdate();
+            // Confirma la transacción
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            // Manejo de excepciones
+            e.printStackTrace(); // Considera usar un logger para registrar el error
+            // Si ocurre un error, se hace un rollback de la transacción
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+        } finally {
+            // Asegúrate de cerrar el EntityManager
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
+        }
+    }
+
+
 }

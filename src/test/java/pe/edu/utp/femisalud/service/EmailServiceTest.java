@@ -21,9 +21,9 @@ public class EmailServiceTest {
     @Test
     public void sendEmailTest() throws EmailException {
         EmailService emailServiceMock = Mockito.mock(EmailService.class);
-        doNothing().when(emailServiceMock).sendEmail("juanromerocollazos@gmail.com", "Juan");
-        emailServiceMock.sendEmail("juanromerocollazos@gmail.com", "Juan");
-        verify(emailServiceMock, times(1)).sendEmail("juanromerocollazos@gmail.com", "Juan");
-        emailService.sendEmail("juanromerocollazos@gmail.com", "Juan");
+        doNothing().when(emailServiceMock).sendEmail("juanromerocollazos@gmail.com", "Juan", "234567");
+        emailServiceMock.sendEmail("juanromerocollazos@gmail.com", "Juan", "234567");
+        verify(emailServiceMock, times(1)).sendEmail("juanromerocollazos@gmail.com", "Juan", "234567");
+        emailService.sendEmail("juanromerocollazos@gmail.com", "Juan", "234567");
     }
 }

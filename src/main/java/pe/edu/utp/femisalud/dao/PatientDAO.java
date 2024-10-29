@@ -7,4 +7,6 @@ public interface PatientDAO {
     String getEmail(String dni);
     String getNames(String dni);
     List<Object[]> getAllPatients();
+    List<String> getData(String dni);
+    void updateData(String dni, String phone, String email);
 }
