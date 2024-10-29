@@ -1,6 +1,5 @@
 package pe.edu.utp.femisalud.controller;
 
-import com.google.common.collect.ImmutableList;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -30,7 +29,6 @@ public class RoutesPages extends HttpServlet {
                 break;
             case "/profile":
                 handleGetDataPatient(req, resp);
-                forwardToPage(req, resp, "/editProfile.jsp");
                 break;
             case "/ambassador":
                 forwardToPage(req, resp, "/ambassadorsForm.jsp");
@@ -78,6 +76,13 @@ public class RoutesPages extends HttpServlet {
         try {
             HttpSession session = req.getSession();
             String dni = (String) session.getAttribute("dni");
+
+            if (dni == null || dni.isEmpty()) {
+                req.setAttribute("errorMessage", "El DNI no está disponible en la sesión.");
+                forwardToPage(req, resp, "/404.jsp");
+                return;
+            }
+
             List<String> data = patientDAO.getData(dni);
             req.setAttribute("data_patient", data);
             forwardToPage(req, resp, "/editProfile.jsp");
