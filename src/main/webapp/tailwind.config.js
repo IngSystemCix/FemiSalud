@@ -2,7 +2,8 @@
 module.exports = {
   darkMode: 'class',
   content: [
-    "./**/*.jsp",
+    "./**/*.{jsp, js}",
+    "!./node_modules/**",
     "./assets/js/**/*.js",
     "./node_modules/flowbite/**/*.js"
   ],

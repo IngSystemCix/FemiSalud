@@ -1,49 +1,56 @@
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
+<%
+  List<String> codes = new ArrayList<>();
+  for (int i = 1; i <= 6; i++) {
+    codes.add("code-" + i);
+  }
+  request.setAttribute("codes", codes);
+%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
   <jsp:include page="fragment/head.jsp"/>
-  <title>FemiSalud</title>
+  <title>FemiSalud :: Login</title>
 </head>
-<body class="flex justify-center items-center w-full h-screen bg-femisalud-200">
-<form id="loginForm" action="verify_dni" method="post" class="w-full h-full flex flex-col justify-center items-start p-6 gap-6">
-  <div class="w-full text-center">
-    <h1 class="text-8xl text-center font-semibold mb-10 text-femisalud-600">FemiSalud</h1>
-    <h2 class="text-4xl font-bold">Inicio de sesión</h2>
+<body class="w-full h-screen flex justify-center items-center">
+<form action="${pageContext.request.contextPath}/send_code" method="post" class="w-full h-full flex flex-col justify-center items-center gap-6 p-6">
+  <h1 class="text-8xl font-bold text-blue-800">FemiSalud</h1>
+  <h2 class="text-4xl font-semibold text-blue-800">Iniciar sesión</h2>
+  <div class="mb-6 w-full">
+    <label for="dni" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">DNI</label>
+    <input type="text" id="dni" name="dni" class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 text-2xl" placeholder="Ingrese su DNI">
   </div>
-  <div class="w-full h-full flex flex-col justify-center items-start gap-6">
-    <div class="w-full">
-      <label for="input_dni" class="block mb-2 text-femisalud-600 text-2xl font-bold">DNI</label>
-      <input type="text" id="input_dni" name="dni" class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-femisalud-400 text-2xl focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="72315678" required>
-    </div>
 
-    <div id="secction_code" class="w-full hidden">
-      <p id="helper-text-explanation" class="mb-2 text-sm text-femisalud-600 dark:text-gray-400">Por favor, introduzca el código de 6 dígitos que le enviamos por correo electrónico.</p>
-      <div class="flex justify-center items-center mb-2 space-x-2 rtl:space-x-reverse">
-        <% for (int i = 1; i <= 6; i++) { %>
-        <div>
-          <label for="code-<%= i %>" class="sr-only">Código <%= i %></label>
-          <input type="text" maxlength="1" data-focus-input-init data-focus-input-prev="code-<%= i == 1 ? "" : (i - 1) %>" data-focus-input-next="code-<%= i == 6 ? "" : (i + 1) %>" id="code-<%= i %>" class="block w-20 h-20 py-3 text-2xl font-extrabold text-center text-gray-900 bg-femisalud-400 border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required />
-        </div>
-        <% } %>
+  <div id="container_code" class="flex mb-2 space-x-2 rtl:space-x-reverse hidden">
+    <c:forEach var="codeId" items="${codes}" varStatus="status">
+      <div>
+        <label for="${codeId}" class="sr-only">Código ${status.index + 1}</label>
+        <input type="text" maxlength="1"
+               data-focus-input-init
+               data-focus-input-prev="${status.index > 0 ? codes[status.index - 1] : ''}"
+               data-focus-input-next="${status.index < codes.size() - 1 ? codes[status.index + 1] : ''}"
+               id="${codeId}"
+               name="${codeId}"
+               class="block w-20 h-20 py-3 text-2xl font-bold text-center text-blue-900 bg-white border border-gray-300 rounded-lg focus:ring-primary-500 focus:border-primary-500"/>
       </div>
-    </div>
-
-    <div class="w-full flex justify-center items-center gap-6">
-      <button type="button" id="button-return" class="w-full focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-2xl px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900 hidden">Regresar</button>
-      <button type="submit" id="button-get_code" class="w-full text-white bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-2xl px-5 py-2.5 me-2 mb-2">Obtener código</button>
-    </div>
+    </c:forEach>
   </div>
+
+  <input type="submit" value="Obtener código" class="w-full cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-bold px-3 py-2 rounded-lg">
 </form>
-
-<div class="relative w-full h-full bg-femisalud-900 flex flex-col items-center justify-center rounded-l-3xl">
-  <h3 class="text-2xl text-white font-semibold mb-10">Especialistas en Salud de la Mujer</h3>
-
-  <div class="relative w-[70%] h-[70%] rounded-full bg-white">
-    <img src="${pageContext.request.contextPath}/assets/img/embarazada-login.webp" alt="Mamá" class="absolute -bottom-20 h-full object-cover filter-drop-shadow-50">
-  </div>
+<div class="w-full h-full bg-femisalud-900 flex flex-col justify-center items-center gap-6">
+  <h2 class="text-white font-bold text-4xl">Especialistas en Salud de la Mujer</h2>
+  <figure class="relative bg-white rounded-full w-[70%] h-[70%] flex items-center justify-center">
+    <img src="${pageContext.request.contextPath}/assets/img/embarazada-login.webp" alt="embarazada" class="absolute bottom-0 left-0 h-full w-full filter-drop-shadow-50">
+  </figure>
 </div>
-
 <script src="${pageContext.request.contextPath}/assets/js/formLogin.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/stepInput.js"></script>
 </body>
 </html>

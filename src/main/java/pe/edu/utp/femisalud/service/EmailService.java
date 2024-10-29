@@ -1,34 +1,41 @@
 package pe.edu.utp.femisalud.service;
 
 import io.github.cdimascio.dotenv.Dotenv;
-import jakarta.ejb.Stateless;
-import org.apache.commons.mail.DefaultAuthenticator;
+import jakarta.enterprise.context.ApplicationScoped;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
-@Stateless
+import java.security.SecureRandom;
+
+@ApplicationScoped
 public class EmailService {
     private static final Dotenv dotenv = Dotenv.configure().load();
+    private static final String EMAIL = dotenv.get("EMAIL");
+    private static final String APP_CODE = dotenv.get("APP_CODE");
+    private static final String HOST_NAME = "smtp.gmail.com";
+    private static final int SMTP_PORT = 587;
+    private static final SecureRandom secureRandom = new SecureRandom();
 
     public void sendEmail(String recipientEmail, String name) throws EmailException {
         HtmlEmail email = new HtmlEmail();
-        email.setHostName("smtp.gmail.com");
-        email.setSmtpPort(587);
+
+        email.setHostName(HOST_NAME);
+        email.setSmtpPort(SMTP_PORT);
         email.setStartTLSEnabled(true);
-        email.setAuthenticator(new DefaultAuthenticator(dotenv.get("EMAIL"), dotenv.get("APP_CODE")));
+        email.setAuthentication(EMAIL, APP_CODE);
         email.setContentType("text/html; charset=UTF-8");
         email.setCharset("UTF-8");
-        email.setFrom(dotenv.get("EMAIL"));
+        email.setFrom(EMAIL);
         email.addTo(recipientEmail);
         email.setSubject("Código de verificación");
 
-        String htmlMessage = createHtmlMessage(name, verificationCode());
-
+        String htmlMessage = createHtmlMessage(name, generateVerificationCode());
         email.setMsg(htmlMessage);
         email.send();
     }
 
     private String createHtmlMessage(String name, String code) {
+        // Template HTML para el cuerpo del correo
         return "<!DOCTYPE html>"
                 + "<html lang=\"es\">"
                 + "<head>"
@@ -47,8 +54,7 @@ public class EmailService {
                 + "        <p style=\"font-family: Arial, sans-serif;\">Por favor ingrese el siguiente código de verificación:</p>"
                 + "        <div style=\"background-color: #006eb6; padding: 10px; border-radius: 5px; font-weight: bold; color: #fff; font-size: 24px;\">" + code + "</div>"
                 + "        <p style=\"font-family: Arial, sans-serif;\">Por favor, no compartas este código con nadie.</p>"
-                + "        <p style=\"font-family: Arial, sans-serif;\">Si cree que recibió este correo por error, comuníquese con el administrador del sistema.</p>"
-                + "        <img src=\"https://n9.cl/xmckd\" alt=\"footer\" style=\"width: 100%; border-radius: 10px;\">"
+                + "        <p style=\"font-family: Arial, sans-serif;\">Si no solicitaste el código, puedes ignorar este correo.</p>"
                 + "      </td>"
                 + "    </tr>"
                 + "  </table>"
@@ -56,7 +62,8 @@ public class EmailService {
                 + "</html>";
     }
 
-    private String verificationCode() {
-        return String.valueOf((int) (Math.random() * 900000) + 100000);
+    private String generateVerificationCode() {
+        int code = secureRandom.nextInt(900000) + 100000;
+        return String.valueOf(code);
     }
 }

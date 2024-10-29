@@ -98,7 +98,7 @@
 
   <servlet-mapping>
     <servlet-name>EmailServlet</servlet-name>
-    <url-pattern>/verify_dni</url-pattern>
+    <url-pattern>/send_code</url-pattern>
   </servlet-mapping>
 
   <error-page>
