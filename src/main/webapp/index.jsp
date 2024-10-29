@@ -42,7 +42,7 @@
     </c:forEach>
   </div>
 
-  <input type="submit" value="Obtener código" class="w-full cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-bold px-3 py-2 rounded-lg">
+  <input type="submit" value="Obtener código" id="get_code" class="w-full cursor-pointer bg-blue-600 hover:bg-blue-700 text-white font-bold px-3 py-2 rounded-lg">
 </form>
 <div class="w-full h-full bg-femisalud-900 flex flex-col justify-center items-center gap-6">
   <h2 class="text-white font-bold text-4xl">Especialistas en Salud de la Mujer</h2>

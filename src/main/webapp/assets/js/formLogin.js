@@ -1,5 +1,7 @@
 const form = document.querySelector('form');
 const containerCode = document.querySelector("#container_code");
+const getCodeButton = document.querySelector("#get_code");
+let context = window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
 
 form.addEventListener('submit', async (event) => {
     event.preventDefault(); // Evita la acción de envío por defecto
@@ -17,6 +19,9 @@ form.addEventListener('submit', async (event) => {
 
         if (response.ok) {
             containerCode.classList.remove("hidden");
+            getCodeButton.removeAttribute("id");
+            getCodeButton.value = "Iniciar Sesión";
+            form.action = window.location.protocol+"//"+ window.location.host + context + "/validate_code";
             console.log("Correo enviado correctamente");
         } else {
             console.error("Error al enviar el correo");

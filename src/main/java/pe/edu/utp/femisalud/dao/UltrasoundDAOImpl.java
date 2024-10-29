@@ -59,5 +59,35 @@ public class UltrasoundDAOImpl implements UltrasoundDAO{
         return clinicalNotes; // No necesitas verificar si es null
     }
 
+    @Override
+    public void addClinicalNotes(String dni, Long idUltrasound, String notes) {
+        Preconditions.checkNotNull(dni, "El DNI no puede ser nulo");
+        Preconditions.checkNotNull(idUltrasound, "El ID de la ecografía no puede ser nulo");
+        Preconditions.checkNotNull(notes, "Las notas clínicas no pueden ser nulas");
+
+        EntityManager em = null;
+        try {
+            em = hibernateUtil.getEntityManager();
+            em.getTransaction().begin();
+            em.createNativeQuery("CALL usp_update_clinical_note(:p_dni, :p_id_ultrasound, :p_clinical_notes)")
+                    .setParameter("p_dni", dni)
+                    .setParameter("p_id_ultrasound", idUltrasound)
+                    .setParameter("p_clinical_notes", notes)
+                    .executeUpdate();
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            // Manejo de excepciones
+            LOGGER.error("Error al ejecutar el procedimiento almacenado usp_add_clinical_notes", e);
+            if (em != null && em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+        } finally {
+            // Asegúrate de cerrar el EntityManager
+            if (em != null && em.isOpen()) {
+                em.close();
+            }
+        }
+    }
+
 
 }

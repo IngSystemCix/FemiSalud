@@ -101,6 +101,16 @@
     <url-pattern>/send_code</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>AddNotesClinicalServlet</servlet-name>
+    <servlet-class>pe.edu.utp.femisalud.controller.AddNotesClinicalServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>AddNotesClinicalServlet</servlet-name>
+    <url-pattern>/add_notes_clinical</url-pattern>
+  </servlet-mapping>
+  
   <error-page>
     <error-code>403</error-code>
     <location>/error/403.jsp</location>

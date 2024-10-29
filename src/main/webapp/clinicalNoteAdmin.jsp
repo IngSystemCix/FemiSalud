@@ -25,28 +25,28 @@
         <!-- Contenedor principal -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <!-- Formulario de notas clínicas -->
-            <form action="" method="post" class="bg-femisalud-200 p-6 rounded-lg shadow-md max-h-screen overflow-y-auto">
+            <form action="${pageContext.request.contextPath}/add_notes_clinical" method="post" class="bg-femisalud-200 p-6 rounded-lg shadow-md max-h-screen overflow-y-auto">
                 <h4 class="text-xl font-semibold mb-2 text-center">Registro de notas clínicas</h4>
                 <p class="text-gray-600 text-start mb-6">Por favor, completa el formulario de notas clínicas de la ecografía realizada.</p>
 
                 <div class="mb-4">
                     <label for="dni-paciente" class="block text-sm font-medium text-gray-700">DNI de la paciente:</label>
-                    <input type="text" id="dni-paciente" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" maxlength="8" />
+                    <input type="text" id="dni-paciente" name="dniPaciente" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" maxlength="8" />
                 </div>
 
                 <div class="mb-4">
                     <label for="id-ecografia" class="block text-sm font-medium text-gray-700">ID de la ecografía:</label>
-                    <select id="id-ecografia" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <select id="id-ecografia" name="idEcografia" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                         <option value="" disabled selected>Selecciona una ecografía</option>
                     </select>
                 </div>
 
                 <div class="mb-4">
                     <label for="nota-clinica" class="block text-sm font-medium text-gray-700">Nota clínica de la ecografía:</label>
-                    <textarea id="nota-clinica" rows="5" class="mt-1 block w-full border border-gray-300 no-resize rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+                    <textarea id="nota-clinica" name="notaClinica" rows="5" class="mt-1 block w-full border border-gray-300 no-resize rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
                 </div>
 
-                <button class="bg-verde-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center">
+                <button type="submit" class="bg-green-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center">
                     Guardar datos
                 </button>
             </form>

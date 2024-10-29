@@ -11964,6 +11964,10 @@ html, body {
   width:2.25rem
 }
 
+.w-\[48rem\]{
+  width:48rem
+}
+
 .min-w-full{
   min-width:100%
 }
@@ -12546,6 +12550,11 @@ html, body {
 .bg-yellow-200{
   --tw-bg-opacity:1;
   background-color:rgb(252 233 106 / var(--tw-bg-opacity))
+}
+
+.bg-green-400{
+  --tw-bg-opacity:1;
+  background-color:rgb(49 196 141 / var(--tw-bg-opacity))
 }
 
 .bg-gradient-to-r{
