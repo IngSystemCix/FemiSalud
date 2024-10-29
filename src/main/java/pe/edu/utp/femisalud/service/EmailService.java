@@ -2,10 +2,6 @@ package pe.edu.utp.femisalud.service;
 
 import io.github.cdimascio.dotenv.Dotenv;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.HtmlEmail;
 
@@ -20,12 +16,6 @@ public class EmailService {
     private static final int SMTP_PORT = 587;
     private static final SecureRandom secureRandom = new SecureRandom();
 
-    @Inject
-    private HttpServletRequest request;
-
-    @Inject
-    private HttpServletResponse response;
-
     public void sendEmail(String recipientEmail, String name) throws EmailException {
         HtmlEmail email = new HtmlEmail();
 
@@ -39,16 +29,9 @@ public class EmailService {
         email.addTo(recipientEmail);
         email.setSubject("Código de verificación");
 
-        String verificationCode = generateVerificationCode();
-        saveCodeInSession(verificationCode);
-        String htmlMessage = createHtmlMessage(name, verificationCode);
+        String htmlMessage = createHtmlMessage(name, generateVerificationCode());
         email.setMsg(htmlMessage);
         email.send();
-    }
-
-    private void saveCodeInSession(String code) {
-        HttpSession session = request.getSession();
-        session.setAttribute("verificationCode", code);
     }
 
     private String createHtmlMessage(String name, String code) {
@@ -70,10 +53,8 @@ public class EmailService {
                 + "        <p style=\"font-family: Arial, sans-serif;\">Recibió este correo porque se realizó una solicitud de un código de un solo uso.</p>"
                 + "        <p style=\"font-family: Arial, sans-serif;\">Por favor ingrese el siguiente código de verificación:</p>"
                 + "        <div style=\"background-color: #006eb6; padding: 10px; border-radius: 5px; font-weight: bold; color: #fff; font-size: 24px;\">" + code + "</div>"
-                + "        <p style=\"font-family: Arial, sans-serif;\">Este código es válido por 10 minutos.</p>"
-                + "        <p style=\"font-family: Arial, sans-serif;\">Si no solicitó este código, por favor ignore este mensaje.</p>"
-                + "        <p style=\"font-family: Arial, sans-serif;\">Saludos cordiales,</p>"
-                + "        <p style=\"font-family: Arial, sans-serif;\">El equipo de Femi Salud.</p>"
+                + "        <p style=\"font-family: Arial, sans-serif;\">Por favor, no compartas este código con nadie.</p>"
+                + "        <p style=\"font-family: Arial, sans-serif;\">Si no solicitaste el código, puedes ignorar este correo.</p>"
                 + "      </td>"
                 + "    </tr>"
                 + "  </table>"
@@ -82,11 +63,7 @@ public class EmailService {
     }
 
     private String generateVerificationCode() {
-        int codeLength = 6;
-        StringBuilder code = new StringBuilder(codeLength);
-        for (int i = 0; i < codeLength; i++) {
-            code.append(secureRandom.nextInt(10));
-        }
-        return code.toString();
+        int code = secureRandom.nextInt(900000) + 100000;
+        return String.valueOf(code);
     }
 }
