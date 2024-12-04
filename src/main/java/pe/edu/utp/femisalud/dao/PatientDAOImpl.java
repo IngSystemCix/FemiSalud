@@ -1,161 +1,272 @@
 package pe.edu.utp.femisalud.dao;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
-import pe.edu.utp.femisalud.util.HibernateUtil;
+import pe.edu.utp.femisalud.DTO.GenreAndTypePregnancyDTO;
+import pe.edu.utp.femisalud.DTO.PatientNotificationDTO;
+import pe.edu.utp.femisalud.DTO.UltrasoundAndClinicalNotesDTO;
+import pe.edu.utp.femisalud.config.HibernateConnection;
 
+import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @ApplicationScoped
-public class PatientDAOImpl implements PatientDAO {
+public class PatientDAOImpl implements PatientDAO{
 
-    @Inject
-    private HibernateUtil hibernateUtil;
+    private static final Logger LOGGER = Logger.getLogger("pe.edu.utp.femisalud");
 
     @Override
-    public boolean verifyDni(String dni) {
-        EntityManager em = hibernateUtil.getEntityManager();
-        boolean result = false; // Variable para almacenar el resultado
-
+    public String getPublicationPostActuality(String dni) {
+        EntityManager entityManager = HibernateConnection.getEntityManagerFactory();
+        entityManager.getTransaction().begin();
+        String data;
         try {
-            result = em.createQuery("SELECT sf_valid_dni(:p_dni)", Boolean.class)
-                    .setParameter("p_dni", dni)
-                    .getSingleResult();
-        } finally {
-            if (em != null && em.isOpen()) {
-                em.close(); // Cerrar el EntityManager
-            }
+            data = entityManager.createNativeQuery("CALL USP_GetLatestUltrasoundLink(:dni)")
+                    .setParameter("dni", dni)
+                    .getSingleResult().toString();
+        }catch (Exception e){
+            data = "";
+        }finally {
+            entityManager.getTransaction().commit();
+            entityManager.close();
         }
-        return result; // Retornar el resultado
+
+        return data;
     }
 
     @Override
-    public String getEmail(String dni) {
-        EntityManager em = hibernateUtil.getEntityManager();
-        String email = null; // Variable para almacenar el email
-
+    public List<UltrasoundAndClinicalNotesDTO[]> getAllUltrasoundLinksAndClinicalNotes(String dni) {
+        EntityManager entityManager = HibernateConnection.getEntityManagerFactory();
+        entityManager.getTransaction().begin();
+        List<UltrasoundAndClinicalNotesDTO[]> data = new ArrayList<>();
         try {
-            email = em.createQuery("SELECT sf_get_patient_email(:p_dni)", String.class)
-                    .setParameter("p_dni", dni)
-                    .getSingleResult();
-        } finally {
-            if (em != null && em.isOpen()) {
-                em.close(); // Cerrar el EntityManager
-            }
-        }
-        return email; // Retornar el email
-    }
-
-    @Override
-    public String getNames(String dni) {
-        EntityManager em = hibernateUtil.getEntityManager();
-        String fullName = null;
-
-        try {
-            fullName = em.createQuery("SELECT sf_get_patient_full_name(:p_dni)", String.class)
-                    .setParameter("p_dni", dni)
-                    .getSingleResult();
-        } finally {
-            if (em != null && em.isOpen()) {
-                em.close(); // Cerrar el EntityManager
-            }
-        }
-        return fullName; // Retornar el nombre completo
-    }
-
-    @Override
-    public List<Object[]> getAllPatients() {
-        EntityManager em = hibernateUtil.getEntityManager();
-        List<Object[]> patients = new ArrayList<>();
-        try {
-            // Ejecuta el procedimiento almacenado y obtiene el resultado
-            List<Object[]> resultList = em.createNativeQuery("CALL usp_get_all_patient()").getResultList();
-            patients = resultList;
-        } catch (Exception e) {
-            // Manejo de excepciones
-            e.printStackTrace(); // Considera usar un logger para registrar el error
-        } finally {
-            // Asegúrate de cerrar el EntityManager
-            if (em != null && em.isOpen()) {
-                em.close();
-            }
-        }
-        return patients;
-    }
-
-    @Override
-    public List<String> getData(String dni) {
-        EntityManager em = hibernateUtil.getEntityManager();
-        List<String> data = new ArrayList<>();
-        try {
-            // Ejecuta el procedimiento almacenado y obtiene el resultado
-            List<Object[]> resultList = em.createNativeQuery("CALL usp_get_data_patient(:p_dni)")
-                    .setParameter("p_dni", dni)
+            List<?> rawData = entityManager.createNativeQuery("CALL USP_GetAllUltrasoundLinksAndNotes(:dni)")
+                    .setParameter("dni", dni)
                     .getResultList();
-
-            // Verificar si se encontraron resultados
-            if (resultList.isEmpty()) {
-                data.add("No se encontraron datos para el DNI proporcionado.");
-                return data; // Devolver la lista con el mensaje
-            }
-
-            // Procesa el resultado del procedimiento almacenado
-            for (Object[] objects : resultList) {
-                // Asegúrate de que el resultado tiene al menos 4 columnas
-                if (objects.length >= 4) {
-                    // Agregar los datos a la lista
-                    data.add(objects[0] != null ? objects[0].toString() : "N/A"); // Nombre
-                    data.add(objects[2] != null ? objects[2].toString() : "N/A"); // Email
-                    data.add(objects[3] != null ? objects[3].toString() : "N/A"); // Otro dato
-                    data.add(objects[1] != null ? objects[1].toString() : "N/A"); // Teléfono
-                } else {
-                    // Manejo en caso de datos incompletos
-                    data.add("Datos incompletos");
-                }
-            }
-        } catch (Exception e) {
-            // Manejo de excepciones
-            e.printStackTrace(); // Considera usar un logger para registrar el error
-        } finally {
-            // Asegúrate de cerrar el EntityManager
-            if (em != null && em.isOpen()) {
-                em.close();
-            }
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+            data = rawData.stream()
+                    .map( row -> {
+                        Object[] columns = (Object[]) row;
+                        return new UltrasoundAndClinicalNotesDTO[] {
+                                new UltrasoundAndClinicalNotesDTO(columns[0].toString(), columns[1].toString(), LocalDateTime.parse(columns[2].toString(), formatter)),
+                        };
+                    })
+                    .collect(Collectors.toList());
+            entityManager.getTransaction().commit();
+        }catch (Exception e){
+            LOGGER.severe(e.getMessage());
+            data = new ArrayList<>();
+        }finally {
+            entityManager.close();
         }
-        return data; // Devolvemos la lista de datos como cadenas individuales
+        return data;
     }
 
     @Override
-    public void updateData(String dni, String phone, String email) {
-        EntityManager em = hibernateUtil.getEntityManager();
+    public Long getUltrasoundCount(String dni) {
+        EntityManager entityManager = HibernateConnection.getEntityManagerFactory();
+        entityManager.getTransaction().begin();
+        Long data = Long.parseLong(entityManager.createNativeQuery("CALL USP_GetUltrasoundCount(:dni)")
+                .setParameter("dni", dni)
+                .getSingleResult().toString());
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        return data;
+    }
+
+    @Override
+    public List<PatientNotificationDTO> getPatientNotifications(String dni) {
+        EntityManager entityManager = HibernateConnection.getEntityManagerFactory();
+        List<PatientNotificationDTO> data = new ArrayList<>();
         try {
-            // Inicia una transacción
-            em.getTransaction().begin();
-            // Ejecuta el procedimiento almacenado
-            em.createNativeQuery("CALL usp_update_patient_data(:p_dni, :p_phone, :p_email)")
-                    .setParameter("p_dni", dni)
-                    .setParameter("p_phone", phone)
-                    .setParameter("p_email", email)
-                    .executeUpdate();
-            // Confirma la transacción
-            em.getTransaction().commit();
+            entityManager.getTransaction().begin();
+            List<?> rawData = entityManager.createNativeQuery("CALL USP_GetPatientNotifications(:dni)")
+                    .setParameter("dni", dni)
+                    .getResultList();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+            data = rawData.stream()
+                    .map(row -> {
+                        Object[] columns = (Object[]) row;
+                        String icon = switch (columns[0].toString()) {
+                            case "MESSAGE" -> "new_message.png";
+                            case "ULTRASOUND" -> "new_ultrasound.png";
+                            case "AMBASSADOR" -> "new_credit.png";
+                            default -> "default_icon.png";
+                        };
+                        LocalDateTime dateNotification = LocalDateTime.parse(columns[1].toString(), formatter);
+                        String formattedDate = dateNotification.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+                        String description = columns[2].toString();
+                        return new PatientNotificationDTO(icon, formattedDate, description);
+                    })
+                    .collect(Collectors.toList());
+            entityManager.getTransaction().commit();
         } catch (Exception e) {
-            // Manejo de excepciones
-            e.printStackTrace(); // Considera usar un logger para registrar el error
-            // Si ocurre un error, se hace un rollback de la transacción
-            if (em.getTransaction().isActive()) {
-                em.getTransaction().rollback();
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
             }
+            LOGGER.severe(e.getMessage());
         } finally {
-            // Asegúrate de cerrar el EntityManager
-            if (em != null && em.isOpen()) {
-                em.close();
+            if (entityManager.isOpen()) {
+                entityManager.close();
+            }
+        }
+        return data;
+    }
+
+    @Override
+    public Integer getPatientNotificationsCount(String dni) {
+        EntityManager entityManager = HibernateConnection.getEntityManagerFactory();
+        entityManager.getTransaction().begin();
+        Integer data = Integer.parseInt(entityManager.createNativeQuery("CALL USP_CountPatientNotifications(:dni)")
+                .setParameter("dni", dni)
+                .getSingleResult().toString());
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        return data;
+    }
+
+    @Override
+    public void registerFavoritesNamesBaby(String dni, String name) {
+        EntityManager entityManager = HibernateConnection.getEntityManagerFactory();
+        entityManager.getTransaction().begin();
+        entityManager.createNativeQuery("CALL USP_RegisterFavoriteName(:dni, :name)")
+                .setParameter("dni", dni)
+                .setParameter("name", name)
+                .executeUpdate();
+        entityManager.getTransaction().commit();
+        entityManager.close();
+    }
+
+    @Override
+    public boolean isFavoriteNameBaby(String name, String dni) {
+        EntityManager entityManager = HibernateConnection.getEntityManagerFactory();
+        entityManager.getTransaction().begin();
+        boolean data = Boolean.parseBoolean(entityManager.createNativeQuery("SELECT UF_CheckNameExists(:name, :dni)")
+                .setParameter("name", name)
+                .setParameter("dni", dni)
+                .getSingleResult().toString());
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        return data;
+    }
+
+    @Override
+    public void deleteFavoriteNameBaby(String name, String dni) {
+        EntityManager entityManager = HibernateConnection.getEntityManagerFactory();
+        entityManager.getTransaction().begin();
+        entityManager.createNativeQuery("CALL USP_DeleteNameByDNI(:name, :dni)")
+                .setParameter("name", name)
+                .setParameter("dni", dni)
+                .executeUpdate();
+        entityManager.getTransaction().commit();
+        entityManager.close();
+    }
+
+    @Override
+    public void addAmbassador(String dni_patient, String ambassadorFullName, String ambassadorDNI, String ambassadorNumberPhone, String ambassadorEmail) {
+        EntityManager entityManager = HibernateConnection.getEntityManagerFactory();
+        entityManager.getTransaction().begin();
+        entityManager.createNativeQuery("CALL USP_InsertAmbassador(:dni_patient, :ambassador_full_name, :ambassador_dni, :ambassador_number_phone, :ambassador_email)")
+                .setParameter("dni_patient", dni_patient)
+                .setParameter("ambassador_full_name", new String(ambassadorFullName.getBytes(), StandardCharsets.UTF_8))
+                .setParameter("ambassador_dni", ambassadorDNI)
+                .setParameter("ambassador_number_phone", ambassadorNumberPhone)
+                .setParameter("ambassador_email", ambassadorEmail)
+                .executeUpdate();
+        entityManager.getTransaction().commit();
+        entityManager.close();
+    }
+
+    @Override
+    public void responseSurvey(String dni, JsonArray responses) {
+        EntityManager entityManager = null;
+        try {
+            entityManager = HibernateConnection.getEntityManagerFactory();
+            entityManager.getTransaction().begin();
+
+            // Convertir JsonArray a JSON String utilizando Gson
+            Gson gson = new Gson();
+            String responsesJson = gson.toJson(responses); // Convierte el JsonArray a un String JSON
+
+            // Llamada al procedimiento almacenado, pasando el JSON como String
+            entityManager.createNativeQuery("CALL USP_SaveSurveyResponses(:dni, :responses)")
+                    .setParameter("dni", dni)
+                    .setParameter("responses", responsesJson)
+                    .executeUpdate();
+
+            // Confirmamos la transacción
+            entityManager.getTransaction().commit();
+        } catch (RuntimeException e) {
+            // En caso de error, revertimos la transacción
+            if (entityManager != null && entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            // Lanzamos una excepción o manejamos el error de acuerdo a lo que necesites
+            throw e; // O puedes manejarlo de otra forma según el contexto
+        } finally {
+            if (entityManager != null) {
+                entityManager.close(); // Asegúrate de cerrar el EntityManager
             }
         }
     }
 
+    @Override
+    public Integer getSurveyCount(String dni) {
+        EntityManager entityManager = HibernateConnection.getEntityManagerFactory();
+        entityManager.getTransaction().begin();
+        Integer data = Integer.parseInt(entityManager.createNativeQuery("CALL USP_GetStatusCountByDNI(:dni)")
+                .setParameter("dni", dni)
+                .getSingleResult().toString());
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        return data;
+    }
 
+    @Override
+    public String getNameByDNI(String dni) {
+        EntityManager entityManager = HibernateConnection.getEntityManagerFactory();
+        entityManager.getTransaction().begin();
+        String data = entityManager.createNativeQuery("CALL USP_GetPatientNameByDNI(:dni)")
+                .setParameter("dni", dni)
+                .getSingleResult().toString();
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        return data;
+    }
+
+    @Override
+    public List<GenreAndTypePregnancyDTO> getGenreAndTypePregnancy(String dni) {
+        EntityManager entityManager = HibernateConnection.getEntityManagerFactory();
+        entityManager.getTransaction().begin();
+        List<GenreAndTypePregnancyDTO> data = new ArrayList<>();
+        try {
+            List<?> rawData = entityManager.createNativeQuery("CALL USP_GetBabyInfoByDNI(:dni)")
+                    .setParameter("dni", dni)
+                    .getResultList();
+            data = rawData.stream()
+                    .map(row -> {
+                        Object[] columns = (Object[]) row;
+                        return new GenreAndTypePregnancyDTO(columns[0].toString(), columns[1].toString());
+                    })
+                    .collect(Collectors.toList());
+            entityManager.getTransaction().commit();
+        } catch (Exception e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            LOGGER.severe(e.getMessage());
+        } finally {
+            if (entityManager.isOpen()) {
+                entityManager.close();
+            }
+        }
+        return data;
+    }
 }

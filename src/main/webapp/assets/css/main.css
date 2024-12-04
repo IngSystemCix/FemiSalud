@@ -1,30 +1,176 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import "flowbite";
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+body {
+    scrollbar-width: thin;
+    scrollbar-color: #115691 #f1f1f1;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #115691;
+    border-radius: 1rem;
+}
+
+@font-face {
+    font-family: 'Prestina Regular';
+    src: url('../fonts/Pristina Regular.ttf') format('truetype');
+}
+
 @layer base {
-  html, body {
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    width: 100%;
-    height: 100lvh;
-  }
-  .filter-drop-shadow-25 {
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  }
-  .filter-drop-shadow-50 {
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.50));
-  }
-  .no-resize {
-    resize: none;
-  }
+    .title {
+        font-family: 'Prestina Regular', sans-serif;
+    }
+    .text-femisalud-900 {
+        color: #115691;
+    }
+    .bg-femisalud-300 {
+        background-color: #ddedfc;
+    }
+    .bg-femisalud-900 {
+        background-color: #115691;
+    }
+    .border-femisalud-300 {
+        border-color: #ddedfc;
+    }
+    .border-femisalud-600 {
+        border-color: #447bab;
+    }
+    .text-inter {
+        font-family: "Inter", sans-serif;
+    }
+    .drop-shadow-femisalud-900-75 {
+        filter: drop-shadow(0 0 0.75rem #115691);
+    }
+    #player {
+        --plyr-color-main: #115691;
+        --plyr-video-control-color: #ffffff;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    #player-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .watermark {
+        position: absolute;
+        bottom: 35px;
+        right: 10px;
+        z-index: 10;
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
+    .watermark h2 {
+        max-width: 100px;
+        height: auto;
+    }
+
+    /* Modal styles */
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .modal-content {
+        background: white;
+        padding: 20px;
+        max-width: 600px;
+        width: 90%;
+        border-radius: 10px;
+        position: relative;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    /* Truncate text with ellipsis */
+    .truncate-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px; /* Adjust the width as needed */
+        text-wrap: auto;
+    }
+    .active {
+        @apply text-white bg-femisalud-900;
+    }
 }
 
 @layer components {
+    #edit {
+        @apply w-full sm:w-auto px-6 py-2 text-white font-bold text-inter bg-femisalud-900 rounded-lg;
+    }
+    #save {
+        @apply w-full sm:w-auto px-6 py-2 text-white font-bold text-inter bg-gray-600 rounded-lg;
+    }
+    #button-get-code {
+        @apply text-inter py-2 px-3 text-2xl bg-femisalud-900 text-white font-bold rounded-lg;
+    }
+
+    #search {
+        @apply text-inter py-2 px-3 text-2xl bg-femisalud-900 text-white font-bold rounded-lg;
+    }
+
+    .container-rating {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row-reverse; /* Invertir el orden visual si es necesario */
+        gap: 0.5rem;
+    }
+
+    .star {
+        opacity: 0;
+    }
+
+    .star-label {
+        cursor: pointer;
+        position: relative;
+        font-size: 34px;
+        color: #000;
+        font-family: 'bootstrap-icons'; /* Asegúrate de cargar bootstrap-icons */
+    }
+
+    .star-label:before {
+        content: '\F586'; /* Código del icono de estrella */
+        font-size: 34px;
+        transition: color 0.3s ease;
+    }
+
+    .star:hover ~ .star-label:before,
+    .star:checked ~ .star-label:before {
+        color: #f1c40f; /* Cambiar el color al pasar el cursor o al seleccionar */
+    }
+
 
 }
 

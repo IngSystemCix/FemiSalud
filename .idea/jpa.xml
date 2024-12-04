@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="JpaBuddyIdeaProjectConfig" reUseTableSchema="true">
-    <option name="reLastEntityCreationPackage" value="src/main/java/pe/edu/utp/femisalud/model" />
-    <option name="reverseEngineeringLastDbConnectionId" value="d47eb486-d510-43bc-b206-6ad6bb8522e2" />
+  <component name="JpaBuddyIdeaProjectConfig" migrateIndexesAndConstraints="true" reUseTableSchema="true">
+    <option name="migrateIndexesAndConstraints" value="true" />
+    <option name="reLastEntityCreationPackage" value="src/main/java/pe/edu/utp/femisalud/models" />
+    <option name="reverseEngineeringLastDbConnectionId" value="b4e7248c-07bb-41f9-9ce5-1c0b166a3b5c" />
   </component>
 </project>

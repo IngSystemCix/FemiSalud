@@ -1,33 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
-             version="3.0">
-  <persistence-unit name="femisalud_db" transaction-type="RESOURCE_LOCAL">
-    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <class>pe.edu.utp.femisalud.model.User</class>
-    <class>pe.edu.utp.femisalud.model.Administrator</class>
-    <class>pe.edu.utp.femisalud.model.Ambassador</class>
-    <class>pe.edu.utp.femisalud.model.AmbassadorAnswer</class>
-    <class>pe.edu.utp.femisalud.model.AmbassadorAnswerId</class>
-    <class>pe.edu.utp.femisalud.model.AspectsOfCare</class>
-    <class>pe.edu.utp.femisalud.model.Assistant</class>
-    <class>pe.edu.utp.femisalud.model.Attention</class>
-    <class>pe.edu.utp.femisalud.model.AttentionForm</class>
-    <class>pe.edu.utp.femisalud.model.Baby</class>
-    <class>pe.edu.utp.femisalud.model.Faq</class>
-    <class>pe.edu.utp.femisalud.model.Favourite</class>
-    <class>pe.edu.utp.femisalud.model.Message</class>
-    <class>pe.edu.utp.femisalud.model.Patient</class>
-    <class>pe.edu.utp.femisalud.model.Role</class>
-    <class>pe.edu.utp.femisalud.model.Ultrasound</class>
-    <class>pe.edu.utp.femisalud.model.UltrasoundView</class>
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
+             version="3.1">
+  <persistence-unit name="femisaludPU" transaction-type="JTA">
+    <jta-data-source>java:/femisaludDS</jta-data-source>
     <properties>
-      <property name="jakarta.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
-      <property name="jakarta.persistence.jdbc.url" value="jdbc:mariadb://${env.HOST_DB}:${env.PORT_DB}/${env.DB_NAME}"/>
-      <property name="jakarta.persistence.jdbc.user" value="${env.USER_DB}"/>
-      <property name="jakarta.persistence.jdbc.password" value="${env.PASS_DB}"/>
       <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect"/>
+      <property name="hibernate.connection.characterEncoding" value="utf8mb4"/>
+      <property name="hibernate.connection.useUnicode" value="true"/>
     </properties>
   </persistence-unit>
 </persistence>
